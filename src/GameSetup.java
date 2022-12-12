@@ -1,2 +1,4 @@
-public class GameSetup {
+public class GameSetup
+{
+
 }
