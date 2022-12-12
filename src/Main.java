@@ -1,8 +1,8 @@
-public class Main {
+public class Main
+{
     public static void main(String[] args) {
-        FileIO test = new FileIO();
-        test.initiateClubs();
-        test.getALastName();
-        test.getAFirstName();
+        ClientPool pool = new ClientPool();
+
+        pool.addClient();
     }
 }
