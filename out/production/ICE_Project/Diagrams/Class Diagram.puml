@@ -1,0 +1,126 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Main *--> GameSetup
+GameSetup *--> Gameplay
+GameSetup *--> ClientPool
+Gameplay *--> Player
+Gameplay *--> Bank
+Bank *--> Negotiations
+Negotiations *--> ClientNegotiations
+Negotiations *--> ClubNegotiation
+ClientNegotiations *--> ClientSign
+ClientNegotiations *--> ClientExtention
+ClubNegotiation *--> ClubExtention
+ClubNegotiation *--> ClubSign
+Player *--> Clients
+Player *--> AgentBureau
+AgentBureau *--> ClientNegotiations
+
+class Main {
+GameSetup()
+}
+
+class GameSetup{
+Player
+Bank
+ClientPool
+AgentBureau
+}
+
+class Gameplay {
+Player
+Negotiations
+startGame()
+nextTurn()
+}
+class Player {
+Bank
+Portfolio
+}
+
+class ClientPool {
+Clients
+Arraylist <Clients> clientpool
+int randomizer
+}
+
+
+interface Negotiations{
+negotiationType()
+acceptOffer()
+declineOffer()
+addClient ()
+removeClient()
+int randomizer2
+
+}
+
+class ClientNegotiations{
+negotiationType()
+addClient()
+Bank
+
+}
+class ClubNegotiation{
+negotiationType ()
+addClient()
+
+}
+class Bank{
+addMoeny()
+withdrawMoney()
+taxes()
+isBankrupt ()
+getBalance ()
+setBalance ()
+}
+
+class Clients{
+String name
+int transferValue
+int age
+int potential
+String position
+int bureauContractLegnth
+int clubContractLength
+
+
+
+}
+
+class AgentBureau{
+int portfolioSize
+Array <clients> portfolio
+makePortfolio(portfolioSize)
+
+
+}
+class ClientSign{
+Bank
+}
+
+class ClientExtention{
+Bank
+removeClient()
+}
+
+class ClubSign{
+Bank
+addClient()
+}
+
+class ClubExtention{
+removeClient()
+Bank
+}
+
+
+
+
+
+
+
+
+
+@enduml

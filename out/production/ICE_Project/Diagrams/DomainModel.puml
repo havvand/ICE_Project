@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object StartMenu
+object GameSetup
+object Gameplay
+object Player
+object ClientPool
+object Negotiations
+object PlayerNegotiations
+object PlayerSignOnBonus
+object PlayerExtention
+object ClubSign
+object ClubExtention
+object ClubNegotiation
+object Bank
+object Clients
+object AgentBureau
+
+
+StartMenu *-> GameSetup
+GameSetup *--> Gameplay
+Gameplay *--> ClientPool
+Player *--> Clients
+Gameplay *--> Player
+Gameplay *--> Bank
+Gameplay *--> Negotiations
+Negotiations *--> ClubNegotiation
+ClubNegotiation *--> ClubSign
+ClubNegotiation *--> ClubExtention
+Negotiations *--> PlayerNegotiations
+PlayerNegotiations *--> PlayerSignOnBonus
+PlayerNegotiations *--> PlayerExtention
+Bank *--> Negotiations
+Player *--> Bank
+Player *--> AgentBureau
+@enduml
