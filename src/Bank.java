@@ -19,7 +19,12 @@ public class Bank {
     }
 
     public boolean isBankrupt() {
-        return getBalance() >= 0;
+       /* if (getBalance() > 0 && turns >= 5) {
+            System.out.println("Your agency is bankrupt");
+            //return to main menu
+            return true;
+        }*/
+        return false;
     }
 
     public int getBalance() {
