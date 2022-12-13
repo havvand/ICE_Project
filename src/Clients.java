@@ -1,12 +1,12 @@
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Random;
-public class Clients
 
-{
+public class Clients {
     String firstName, lastName, position;
     int age, skill, potential, transferValue;
 
-    public Clients(String firstName, String lastName, String position, int age, int skill, int potential, int transferValue)
-    {
+    public Clients(String firstName, String lastName, String position, int age, int skill, int potential, int transferValue) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -16,34 +16,51 @@ public class Clients
         this.transferValue = transferValue;
     }
 
-    public void nextTurn(){
-        Random rand = new Random();
 
-        age = age + 1;
-        if (potential >25 && potential <= 35){
-            int randInt = rand.nextInt(1)+1;
-            potential = potential + randInt;
-        } else if (potential >35 && potential <= 50) {
-            int randInt = rand.nextInt(5)+1;
-            potential = potential + randInt;
-        } else if (potential > 50 && potential <=65) {
-            int randInt = rand.nextInt(8)+1;
-            potential = potential + randInt;
-        } else if (potential > 65 && potential <= 80) {
-            int randInt = rand.nextInt(10)+1;
-            potential = potential + randInt;
-        } else if (potential > 80 && potential <=100) {
-            int randInt = rand.nextInt(13)+1;
-            potential = potential + randInt;
+        public Clients newClient ()
+        {
+            return new Clients("Ole", "Jensen", "top", 22, 44, 3, 1000000);
         }
-    }
-    public Clients newClient()
-    {
-        return new Clients("Ole", "Jensen", "top", 22, 44, 3, 1000000);
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String toString()
-    {
-        return this.firstName;
+    public void setSkill(int skill) {
+        this.skill = skill;
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getPotential() {
+        return potential;
+    }
+
+    public int getSkill() {
+        return skill;
+    }
+
+    public int getTransferValue() {
+        return transferValue;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public String toString ()
+        {
+            return this.firstName;
+        }
+
 }
