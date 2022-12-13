@@ -20,7 +20,7 @@ public class Bank {
 
     public boolean isBankrupt() {
        /* if (getBalance() > 0 && turns >= 5) {
-            System.out.println("Your agency is bankrupt");
+            System.out.println("Game Over! - Your agency is bankrupt");
             //return to main menu
             return true;
         }*/
@@ -33,5 +33,10 @@ public class Bank {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public void displayBalance(){
+        Bank bank = new Bank();
+        System.out.println(bank.getBalance());
     }
 }

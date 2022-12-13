@@ -8,18 +8,15 @@ public class ClientNegotiation implements Negotiation {
     private int clientResistancePoint;
     private int negCount = 0;
     private final Bank bank = new Bank();
+    private final TextUI textUI = new TextUI();
 
     private final Scanner scanner = new Scanner(System.in);
 
     public void negotiationRounds() {
         resistancePointSetter();
         //give initial offer
-        System.out.println("How much do you expect to make from this client?");
-        agentTargetPoint = Integer.parseInt(scanner.nextLine());
-        System.out.println("What is the least you expect to make from this client?");
-        agentResistancePoint = Integer.parseInt(scanner.nextLine());
-        System.out.println("Make initial offer for client");
-        agentOffer = Integer.parseInt(scanner.nextLine());
+        agentResistancePoint = textUI.getUserInputNum("How much are you willing to pay from this client?");
+        agentOffer = textUI.getUserInputNum("Make initial offer for client");
         // check if we're within clients range
         if(agentOffer < clientResistancePoint) {
             System.out.println("Are you kidding me?");
@@ -43,8 +40,7 @@ public class ClientNegotiation implements Negotiation {
         /* leave negotiation and return to player list */
     }
      public void improvedOffer() {
-         System.out.println("You can do better than that");
-         agentOffer = Integer.parseInt(scanner.nextLine());
+         agentOffer = textUI.getUserInputNum("You can do better than that");
          ++negCount;
      }
      public int resistancePointSetter() {

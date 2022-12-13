@@ -31,8 +31,11 @@ public class TextUI {
 
     public String getUserInput(String msg) {
         this.displayMessage(msg);
-        String input = scan.nextLine();
-        return input;
+        return scan.nextLine();
+    }
+    public int getUserInputNum(String msg) {
+        this.displayMessage(msg);
+        return Integer.parseInt(scan.nextLine());
     }
 
 }
