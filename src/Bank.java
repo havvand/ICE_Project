@@ -1,8 +1,8 @@
+import java.util.Random;
+
 public class Bank {
     private int balance;
     private int tax;
-
-
 
     public int addMoney(int amountToAdd) {
 
