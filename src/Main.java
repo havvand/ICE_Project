@@ -5,9 +5,10 @@ public class Main
         TextUI ui = new TextUI();
         FileIO io = new FileIO();
 
-      io.getAFirstName();
+      //io.getAFirstName();
+      ui.printArray(io.initiateClubs());
        // io.getAFirstName();
-      ui.printArray(io.firstNameList);
+    //  ui.printArray(io.firstNameList);
 
 
     }

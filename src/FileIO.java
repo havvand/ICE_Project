@@ -65,6 +65,7 @@ public class FileIO {
 
             FileReader names = new FileReader("data/Klubnavne.csv");
             Scanner reader = new Scanner(names);
+            reader.nextLine();
 
             while (reader.hasNextLine()) {
                 String s = reader.nextLine();
@@ -79,7 +80,7 @@ public class FileIO {
             System.out.println("Datafile not found");
             //userData = null;
         }
-        System.out.println(clubNationTier);
+
         return clubNationTier;
     }
 
