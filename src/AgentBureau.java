@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
-public class AgentBureau extends Player {
-    Clients client = new Clients();
+public class AgentBureau  {
+
     int bureauLevel;
 
 
@@ -10,10 +10,5 @@ public class AgentBureau extends Player {
     }
 
 
-    public ArrayList<Clients> createPlayerClientPool(Player){
-        ArrayList<Clients> playerClientPool = new ArrayList<Clients>();
-
-
     }
 
-}
