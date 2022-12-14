@@ -1,6 +1,6 @@
 public interface Negotiation {
 
-    public void negotiationRounds();
+    public void runNegotiation();
 
     public void acceptOffer();
     public void declineOffer();

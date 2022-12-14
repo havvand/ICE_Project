@@ -11,11 +11,12 @@ public class ClientNegotiation implements Negotiation {
     private final TextUI textUI = new TextUI();
 
     private final Scanner scanner = new Scanner(System.in);
+    private final Clients client = new Clients("","","",0,0,0,0, 0);
+    private final Agency agency = new Agency();
 
-    public void negotiationRounds() {
+    public void runNegotiation() {
         resistancePointSetter();
         //give initial offer
-        agentResistancePoint = textUI.getUserInputNum("How much are you willing to pay from this client?");
         agentOffer = textUI.getUserInputNum("Make initial offer for client");
         // check if we're within clients range
         if(agentOffer < clientResistancePoint) {
@@ -28,15 +29,16 @@ public class ClientNegotiation implements Negotiation {
             System.out.println("Wow! I am in!");
             acceptOffer();
         }
+        //accept or decline until max iteration
         if(negCount > 3) {
-            System.out.println("client.getName+ has left the negotiating table without a deal");
+            System.out.println(client.getFirstName()+" "+client.getLastName()+" has left the negotiating table without a deal");
             declineOffer();
         }
         //accept or decline
         /* run acceptOffer() or declineOffer() and then iterate over offer*/
         //improve offer on decline ap
         /* input = new offer */
-        //accept or decline until max iteration
+
         /* leave negotiation and return to player list */
     }
      public void improvedOffer() {
@@ -44,9 +46,9 @@ public class ClientNegotiation implements Negotiation {
          ++negCount;
      }
      public int resistancePointSetter() {
-        //Client client = new Client
+
          // resistancePoint is set to skill * 1 mil / 10 which is 10% of their transfervalue
-         //clientResistancePoint = client.transferValue / 10;
+         clientResistancePoint = client.getTransferValue() / 10;
         //returns the resistancePoint for the client by
          //if the ability is above a certain
         return clientResistancePoint;
@@ -82,8 +84,8 @@ public class ClientNegotiation implements Negotiation {
     @Override
     public void addClientToAgency() {
         //adds the prospective client to AgentBureau
-        /* Agency agency = new Agency;
-        *  agency.add(client); */
+
+        //agency.add(client);
 
 
 

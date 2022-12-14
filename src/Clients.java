@@ -81,4 +81,16 @@ public class Clients
     public void setSkill(int skill) {
         this.skill = skill;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public int getTransferValue() {
+        return transferValue;
+    }
 }
