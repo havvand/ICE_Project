@@ -74,6 +74,7 @@ public class ClientPool
                 System.out.println(e);
             }
         }
+
     }
 
     public ArrayList<Clients> createClientPoolArray()
@@ -167,5 +168,9 @@ public class ClientPool
         {
 
         }
+    }
+    public void removeClientFromPool(Clients client) {
+        //removes prospective client from clientPool as they're no longer available
+        clientPool.remove(client);
     }
 }

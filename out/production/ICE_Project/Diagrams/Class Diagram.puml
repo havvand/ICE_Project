@@ -14,8 +14,8 @@ ClientNegotiations *--> ClientExtention
 ClubNegotiation *--> ClubExtention
 ClubNegotiation *--> ClubSign
 Player *--> Clients
-Player *--> AgentBureau
-AgentBureau *--> ClientNegotiations
+Player *--> Agency
+Agency *--> ClientNegotiations
 
 class Main {
 GameSetup()
@@ -25,24 +25,22 @@ class GameSetup{
 Player
 Bank
 ClientPool
-AgentBureau
+Agency
 }
 
 class Gameplay {
 Player
 Negotiations
 startGame()
-nextTurn()
+nextPlayer()
 }
 class Player {
 Bank
-Portfolio
+Agency
 }
 
 class ClientPool {
 Clients
-Arraylist <Clients> clientpool
-int randomizer
 }
 
 
@@ -50,17 +48,13 @@ interface Negotiations{
 negotiationType()
 acceptOffer()
 declineOffer()
-addClient ()
-removeClient()
-int randomizer2
-
+addClientToAgency ()
+removeClientFromPool()
 }
 
 class ClientNegotiations{
 negotiationType()
-addClient()
-Bank
-
+addClientToAgency()
 }
 class ClubNegotiation{
 negotiationType ()
@@ -68,7 +62,7 @@ addClient()
 
 }
 class Bank{
-addMoeny()
+addMoney()
 withdrawMoney()
 taxes()
 isBankrupt ()
@@ -78,18 +72,17 @@ setBalance ()
 
 class Clients{
 String name
-int transferValue
+int value
 int age
 int potential
 String position
-int bureauContractLegnth
-int clubContractLength
-
-
-
+String getName()
+int getValue()
+int getAge()
+int getPosition()
 }
 
-class AgentBureau{
+class Agency{
 int portfolioSize
 Array <clients> portfolio
 makePortfolio(portfolioSize)
@@ -107,11 +100,11 @@ removeClient()
 
 class ClubSign{
 Bank
-addClient()
+addClient
 }
 
 class ClubExtention{
-removeClient()
+removeClient
 Bank
 }
 
