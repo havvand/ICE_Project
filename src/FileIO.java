@@ -71,7 +71,6 @@ public class FileIO {
             System.out.println("Datafile not found");
             //userData = null;
         }
-        System.out.println(lastNameList.get(randomint));
         return lastNameList.get(randomint);
     }
 
