@@ -4,10 +4,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
-public class FileIO
-{
-    public String getAFirstName()
-    {
+public class FileIO {
+    public ArrayList<String> getClientPool(){
+        ArrayList<String> clientPool = new ArrayList<>();
+        try {
+            FileReader clients = new FileReader("data/clientpool.csv");
+            Scanner scan = new Scanner(clients);
+
+            while(scan.hasNextLine()){
+                String s = scan.nextLine();
+                clientPool.add(s);
+
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(clientPool);
+        return clientPool;
+
+    }
+    public String getAFirstName() {
         Random rand = new Random();
         int randomint = rand.nextInt(100) + 1;
         ArrayList<String> firstNameList = new ArrayList<>();
@@ -55,6 +71,7 @@ public class FileIO
             System.out.println("Datafile not found");
             //userData = null;
         }
+        System.out.println(lastNameList.get(randomint));
         return lastNameList.get(randomint);
     }
 
@@ -64,6 +81,7 @@ public class FileIO
 
             FileReader names = new FileReader("data/Klubnavne.csv");
             Scanner reader = new Scanner(names);
+            reader.nextLine();
 
             while (reader.hasNextLine()) {
                 String s = reader.nextLine();

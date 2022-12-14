@@ -73,6 +73,7 @@ public class ClientPool
                 System.out.println(e);
             }
         }
+
     }
 
     public ArrayList<Clients> createClientPoolArray()
