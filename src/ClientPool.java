@@ -1,18 +1,21 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ClientPool
 {
-    //Clients client = null;
-    ArrayList<Clients> clientPool = new ArrayList<>();
+    ArrayList<Clients> clientPool = new ArrayList<>(); // Arraylist for counting!
     Clients client = new Clients("", "", "", 0,0, 0, 0, 0);
 
     public ClientPool()
     {
     }
 
-    public void initializeClientPool()
+    /*public void initializeClientPool()
     {
         if(clientPool.size() < 50)
         {
@@ -55,10 +58,11 @@ public class ClientPool
                 }
             }
         }
-    }
+    }*/
 
-    public void addToClientPoolTxt()
+    public void initializeClientPoolToCsv()
     {
+        initializeClientPoolArray();
         clearCsv();
 
         for(int i = 0; i < 50; i++)
@@ -67,7 +71,43 @@ public class ClientPool
                 client = client.newClient(1, i + 1);
                 //Scanner reader = new Scanner("data/userdata.txt");
                 FileWriter writer = new FileWriter("data/clientpool.csv", true);
-                writer.write(client.id + ";" + client.firstName + ";" + client.age + ";" + client.position + ";" + client.potential + ";" +  client.skill + ";" + client.transferValue +";\n");
+                writer.write(client.id + ";" + client.firstName + ";" + client.lastName + ";" + client.age + ";" + client.position + ";" +  client.skill + ";" +  client.potential + ";" + client.transferValue +";\n");
+                writer.close();
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+        for(int i = 50; i < 250; i++)
+        {
+            try {
+                client = client.newClient(2, i + 1);
+                //Scanner reader = new Scanner("data/userdata.txt");
+                FileWriter writer = new FileWriter("data/clientpool.csv", true);
+                writer.write(client.id + ";" + client.firstName + ";" + client.lastName + ";" + client.age + ";" + client.position + ";" +  client.skill + ";" +  client.potential + ";" + client.transferValue +";\n");
+                writer.close();
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+        for(int i = 250; i < 450; i++)
+        {
+            try {
+                client = client.newClient(3, i + 1);
+                //Scanner reader = new Scanner("data/userdata.txt");
+                FileWriter writer = new FileWriter("data/clientpool.csv", true);
+                writer.write(client.id + ";" + client.firstName + ";" + client.lastName + ";" + client.age + ";" + client.position + ";" +  client.skill + ";" +  client.potential + ";" + client.transferValue +";\n");
+                writer.close();
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+        for(int i = 450; i < 550; i++)
+        {
+            try {
+                client = client.newClient(4, i + 1);
+                //Scanner reader = new Scanner("data/userdata.txt");
+                FileWriter writer = new FileWriter("data/clientpool.csv", true);
+                writer.write(client.id + ";" + client.firstName + ";" + client.lastName + ";" + client.age + ";" + client.position + ";" +  client.skill + ";" +  client.potential + ";" + client.transferValue +";\n");
                 writer.close();
             } catch (IOException e) {
                 System.out.println(e);
@@ -75,38 +115,55 @@ public class ClientPool
         }
     }
 
-    public void replacePlayer()
+    public ArrayList<Clients> initializeClientPoolArray()
     {
-        try {
-            System.out.println("REPLACE");
-            FileReader clientpool = new FileReader("data/clientpool.csv");
-            BufferedReader br = new BufferedReader(clientpool);
-            Scanner reader = new Scanner(clientpool);
+        ArrayList<Clients> clientPoolList = new ArrayList<>(); // The arraylist for the initialized clientpool!
 
-            if(reader.hasNextLine())
-            {
-                System.out.println(client.id);
-                if(client.age > 20) {
-                    try {
-                        //client = client.newClient(1, i + 1);
-                        //Scanner reader = new Scanner("data/userdata.txt");
-                        System.out.println("client NAME " + client.firstName);
-                        FileWriter writer = new FileWriter("data/clientpool.csv", true);
-                        writer.write("REPLACED" + client.id + ";" + client.firstName + ";" + client.age + ";" + client.position + ";" + client.potential + ";" + client.skill + ";" + client.transferValue + ";\n");
-                        writer.close();
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    }
-                }
-            }
-
-            } catch (FileNotFoundException e)
+        for(int i = 0; i < 50; i++)
         {
-            System.out.println("FUCK");
+            client = client.newClient(1, i + 1);
+            clientPoolList.add(client);
+        }
+        for(int i = 50; i < 250; i++)
+        {
+            client = client.newClient(2, i + 1);
+            clientPoolList.add(client);
+        }
+        for(int i = 250; i < 450; i++)
+        {
+            client = client.newClient(3, i + 1);
+            clientPoolList.add(client);
+        }
+        for(int i = 450; i < 550; i++)
+        {
+            client = client.newClient(4, i + 1);
+            clientPoolList.add(client);
         }
 
+        for (Clients c : clientPoolList)
+        {
+            System.out.println("Client ID: " + c.id + "\n Name: " + c.firstName + " " + c.lastName + "\n Age: " + c.age + "\n Position: " +c.position + "\n Skill: " +  c.skill + "\n Transfer Value: " + c.transferValue);
+        }
+
+        /*try
+        {
+            List<String> inputLines = Files.readAllLines(Paths.get("data/clientpool.csv"), StandardCharsets.UTF_8);
+            List<String> clientPoolArray = new ArrayList<>(inputLines.size());
+            for(String line : inputLines)
+            {
+               clientPoolArray.add(line);
+               System.out.println(line);
+            }
+            System.out.println(clientPoolArray.get(0));
+
+        }catch(Exception e)
+        {
+            System.out.println("LOL");
+        }*/
+        return clientPoolList;
     }
 
+    // So far the method is only checking how many of each type player there are in the pool!
     public void addNewClient()
     {
         int goalKeeper = 0;
