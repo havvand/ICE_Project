@@ -1,14 +1,15 @@
 public class Main {
     public static void main(String[] args) {
 
-        GameSetup gs = new GameSetup();
+        GamePlay gp = new GamePlay();
         ClientPool cp = new ClientPool();
         FileIO io = new FileIO();
 
-        cp.initializeClientPool();
-        cp.addToClientPoolTxt();
-        io.getClientPool();
-        //gs.nextTurn();
+
+        cp.initializeArrayList();
+        gp.nextTurn();
+
+
     }
 }
 

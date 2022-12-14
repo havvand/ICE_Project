@@ -54,7 +54,8 @@ public class Clients
 
             return new Clients(firstName, lastName, "Forward", id, age, skill, potential, transferValue);
         }
-        return new Clients("ERROR", lastName, "ERROR", id, 0, 0, 0, 1000000);
+
+        return null;
     }
 
     public String toString()
