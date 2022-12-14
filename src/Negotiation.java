@@ -4,6 +4,5 @@ public interface Negotiation {
 
     public void acceptOffer();
     public void declineOffer();
-    public void addClientToAgency();
-    public void removeClientFromPool();
+
 }

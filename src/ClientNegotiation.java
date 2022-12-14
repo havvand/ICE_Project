@@ -13,6 +13,7 @@ public class ClientNegotiation implements Negotiation {
     private final Scanner scanner = new Scanner(System.in);
     private final Clients client = new Clients("","","",0,0,0,0, 0);
     private final Agency agency = new Agency();
+    private final ClientPool cp = new ClientPool();
 
     public void runNegotiation() {
         resistancePointSetter();
@@ -31,17 +32,18 @@ public class ClientNegotiation implements Negotiation {
         }
         //accept or decline until max iteration
         if(negCount > 3) {
-            System.out.println(client.getFirstName()+" "+client.getLastName()+" has left the negotiating table without a deal");
+            System.out.println(client.getFirstName()+" "+client.getLastName()+" has left the negotiation without a deal");
             declineOffer();
         }
         //accept or decline
         /* run acceptOffer() or declineOffer() and then iterate over offer*/
-        //improve offer on decline ap
+
         /* input = new offer */
 
         /* leave negotiation and return to player list */
     }
      public void improvedOffer() {
+         //improve offer on decline
          agentOffer = textUI.getUserInputNum("You can do better than that");
          ++negCount;
      }
@@ -68,33 +70,18 @@ public class ClientNegotiation implements Negotiation {
 
     @Override
     public void acceptOffer() {
-        addClientToAgency();
+        agency.addClientToAgency(client);
         bank.withdrawMoney(agentOffer);
+        cp.removeClientFromPool(client);
         //return to clientPool;
 
     }
 
     @Override
     public void declineOffer() {
-        removeClientFromPool();
+        cp.removeClientFromPool(client);
         //return to clientPool;
 
     }
 
-    @Override
-    public void addClientToAgency() {
-        //adds the prospective client to AgentBureau
-
-        //agency.add(client);
-
-
-
-    }
-
-    @Override
-    public void removeClientFromPool() {
-        //removes client from clientPool
-        /* ClientPool cp = new ClientPool
-        * cp.remove(client); */
-    }
 }
