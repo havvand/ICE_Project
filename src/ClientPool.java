@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class ClientPool
 {
-    ArrayList<Clients> clientPool = new ArrayList<>(); // Arraylist for counting!
+    static ArrayList<Clients> clientPool = new ArrayList<>(); // Arraylist for counting!
     Clients client = new Clients("", "", "", 0,0, 0, 0, 0);
 
     public ClientPool()
@@ -18,6 +18,7 @@ public class ClientPool
     public void initializeArrayList()
     {
         clientPool = createClientPoolArray();
+        System.out.println(clientPool.get(0).firstName);
     }
 
 
@@ -96,10 +97,10 @@ public class ClientPool
             clientPoolList.add(client.newClient(4, i + 1));
         }
 
-        for (Clients c : clientPoolList)
+        /*for (Clients c : clientPoolList)
         {
             System.out.println("Client ID: " + c.id + "\n Name: " + c.firstName + " " + c.lastName + "\n Age: " + c.age + "\n Position: " +c.position + "\n Skill: " +  c.skill + "\n Transfer Value: " + c.transferValue);
-        }
+        }*/
 
         /*try
         {
@@ -120,7 +121,7 @@ public class ClientPool
     }
 
     // So far the method is only checking how many of each type player there are in the pool!
-    public void addNewClient()
+    public void checkClientPool()
     {
         int goalKeeper = 0;
         int defender = 0;
