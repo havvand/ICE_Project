@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class ClientPool
 {
+
   static   ArrayList<Clients> clientPool = new ArrayList<>(); // Arraylist for counting!
     Clients client = new Clients("", "", "", 0,0, 0, 0, 0);
 
@@ -170,6 +171,7 @@ public class ClientPool
     }
 
     public ArrayList<Clients> getClientPool() {
+
         return clientPool;
     }
 }

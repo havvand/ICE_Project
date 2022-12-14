@@ -8,7 +8,7 @@ public class Main {
 
         cp.initializeArrayList();
         gp.nextTurn();
-        cp.getClientPool();
+
 
     }
 }

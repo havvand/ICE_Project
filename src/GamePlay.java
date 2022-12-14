@@ -2,22 +2,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GamePlay {
+    String RESET = "\033[0m", GREEN_BOLD = "\033[1;32m", REDB = "\033[1;31m", YELB = "\033[1;33m", B_B= "\033[1;34m";
+    Bank b = new Bank();
     ClientPool cp = new ClientPool();
     Clients c = new Clients("","","",0,0,0,0, 0);
+    Agency a = new Agency();
     public void nextTurn(){
         Random rand = new Random();
         int upperLimit;
         int lowerLimit;
         ArrayList<Clients> pool = cp.getClientPool();
-        System.out.println("first name: " + cp.getClientPool().get(0).firstName);
-        System.out.println("skill level: " + cp.getClientPool().get(0).skill);
-        System.out.println("potential: " + cp.getClientPool().get(0).potential);
-        System.out.println("age: " + cp.getClientPool().get(0).age);
-
-
-
-
-
             for (Clients c : pool){
             c.setAge(c.age +1);
 
@@ -73,9 +67,17 @@ public class GamePlay {
 
 
             }
-        System.out.println("first name: " + cp.getClientPool().get(0).firstName);
-        System.out.println("skill level: " + cp.getClientPool().get(0).skill);
-        System.out.println("potential: " + cp.getClientPool().get(0).potential);
-        System.out.println("age: " + cp.getClientPool().get(0).age);
+
+
+}
+public void clientSalary(){
+int totalSalary = 0;
+        for (Clients c : a.getPortfolio()){
+            double salaryPercentage = (c.transferValue / 10);
+            int salary = (int) Math.round(salaryPercentage);
+            totalSalary += salary;
+        }
+    b.addMoney(totalSalary);
+    b.withdrawMoney((totalSalary/100)*15);
 }
 }
