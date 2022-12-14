@@ -17,5 +17,9 @@ public class Agency {
 
     }
 
+    public ArrayList<Clients> getPortFolio() {
+        return agency;
+    }
+
     }
 

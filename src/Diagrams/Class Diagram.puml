@@ -41,6 +41,14 @@ Agency
 
 class ClientPool {
 Clients
+ArrayList<Clients> clientPool
+public void initializeClientPool()
+public void addToClientPoolTxt()
+public void replacePlayer()
+public void addNewClient()
+public static void clearCsv()
+public void removeClientFromPool(Clients client)
+
 }
 
 
@@ -83,9 +91,8 @@ int getPosition()
 }
 
 class Agency{
-int portfolioSize
-Array <clients> portfolio
-makePortfolio(portfolioSize)
+private int bureauLevel
+private ArrayList<Clients> agency
 
 
 }
