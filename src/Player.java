@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Player {
     ArrayList <Clients> playerClientPool = new ArrayList<>();
-    Bank ballance = new Bank(0);
+    Bank ballance = new Bank();
 
 
     public Player(ArrayList<Clients> playerClientPool, Bank ballance){

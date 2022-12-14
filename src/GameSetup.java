@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class GameSetup
 {
-    Clients client = new Clients("","","",0,0,0,0);
+    Clients client = new Clients("","","",0,0,0,0, 0);
     public void nextTurn() {
         FileIO io = new FileIO();
         Random rand = new Random();

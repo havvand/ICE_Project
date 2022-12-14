@@ -61,4 +61,24 @@ public class Clients
     {
         return "";
     }
+
+    public int getPotential() {
+        return potential;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getSkill() {
+        return skill;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setSkill(int skill) {
+        this.skill = skill;
+    }
 }

@@ -5,6 +5,24 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class FileIO {
+    public ArrayList<String> getClientPool(){
+        ArrayList<String> clientPool = new ArrayList<>();
+        try {
+            FileReader clients = new FileReader("data/clientpool.csv");
+            Scanner scan = new Scanner(clients);
+
+            while(scan.hasNextLine()){
+                String s = scan.nextLine();
+                clientPool.add(s);
+
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(clientPool);
+        return clientPool;
+
+    }
     public String getAFirstName() {
         Random rand = new Random();
         int randomint = rand.nextInt(100) + 1;
