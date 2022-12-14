@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-
-public class AgentBureau  {
+public class Agency {
 
     int bureauLevel;
 
