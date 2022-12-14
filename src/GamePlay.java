@@ -72,7 +72,7 @@ public class GamePlay {
 }
 public void clientSalary(){
 int totalSalary = 0;
-        for (Clients c : a.getPortfolio()){
+        for (Clients c : a.getPortFolio()){
             double salaryPercentage = (c.transferValue / 10);
             int salary = (int) Math.round(salaryPercentage);
             totalSalary += salary;
