@@ -135,6 +135,7 @@ public class ClientPool {
 
         System.out.println("POOL SIZE BEFORE ADD " + clientPool.size());
 
+        addClientsPerTurn();
     }
 
     // So far the method is only checking how many of each type player there are in the pool!
@@ -187,17 +188,22 @@ public class ClientPool {
 
     public void removeClientFromPool ()
     {
+        System.out.println(clientPool.get(0).id);
         int input = textUI.getUserInputNum("Enter player ID to remove player!");
                 //clientPool.get(177).id; // REPLACE WITH USER INPUT
         //removes prospective client from clientPool as they're no longer available
-        int size = clientPool.size();
+
         for (int i = 0; i < clientPool.size(); ++i)
         {
             if (input == clientPool.get(i).id)
             {
                 clientPool.remove(i);
+                break;
             }
+            else if (input != clientPool.get(i).id)
+                removeClientFromPool();
         }
+
     }
 
 

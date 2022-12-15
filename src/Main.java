@@ -6,8 +6,6 @@ public class Main
 
         pool.initializeArrayList();
         pool.removeClientFromPool();
-        //pool.removeClientFromPool();
-        pool.addClientsPerTurn();
 
     }
 }
