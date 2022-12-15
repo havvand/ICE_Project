@@ -63,6 +63,7 @@ public class ClientNegotiation implements Negotiation {
          clientResistancePoint = client.getTransferValue() / 10;
         //returns the resistancePoint for the client by
          //if the ability is above a certain
+         textUI.displayMessage("ID: " + c.id+ " Name: " + c.firstName+" "+c.lastName+"| Position: "+c.position+"| Skill: "+c.skill+"| Value: "+c.transferValue);
          System.out.println(clientResistancePoint);
         return clientResistancePoint;
      }
@@ -72,10 +73,7 @@ public class ClientNegotiation implements Negotiation {
         this.client = c;
         agency.addClientToAgency(c);
         bank.withdrawMoney(agentOffer);
-        bank.setBalance(agentOffer);
         cp.removeClientFromPool(c.id);
-        //return to clientPool;
-
     }
 
     @Override

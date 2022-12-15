@@ -11,8 +11,8 @@ public class Bank {
     }
 
     public int withdrawMoney(int amountToWithdraw) {
-
-        return balance - amountToWithdraw;
+        balance = balance - amountToWithdraw;
+        return balance;
     }
 
     public void taxes() {

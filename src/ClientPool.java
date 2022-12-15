@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class ClientPool {
     TextUI textUI = new TextUI();
     static ArrayList<Clients> clientPool = new ArrayList<>();
+   static ArrayList<Clients> clientList = new ArrayList<>();
     Clients client = new Clients("", "", "", 1, 0, 0, 0, 0);
     int goalKeeper, defender, midfield, forward;
 
@@ -229,10 +230,13 @@ public class ClientPool {
 
         return clientPool;
     }
+    public ArrayList<Clients> getClientList(){
+        return clientList;
+    }
 
     public ArrayList<Clients> displayClientList() {
 
-        ArrayList<Clients> clientList = new ArrayList<>();
+
         int player1 = (int)(Math.random()*(9300 - 1000 + 1) + 1000);
 
         //put in new arrayList and display them
@@ -241,7 +245,7 @@ public class ClientPool {
             clientList.add(c);
         }
         for (Clients c: clientList) {
-            System.out.println(c.id+" Name: "+ c.firstName+" "+c.lastName+"| Position: "+c.position+"| Skill: "+c.skill+"| Value: "+c.transferValue);
+            System.out.println("ID: " + c.id+" Name: "+ c.firstName+" "+c.lastName+"| Position: "+c.position+"| Skill: "+c.skill+"| Value: "+c.transferValue);
         }
 
         return clientList;

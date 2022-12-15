@@ -32,7 +32,6 @@ public class GamePlay {
             }
 
         } else if (input == 2) {
-            System.out.println("hej");
             cp.displayClientList();
             chooseClient();
             newTurn();
@@ -71,7 +70,11 @@ public class GamePlay {
 
     public void aging(){
         ArrayList<Clients> pool = cp.getClientPool();
+        ArrayList<Clients> portfolio = cp.getClientList();
         for (Clients c : pool) {
+            c.setAge(c.age + 1);
+        }
+        for (Clients c : portfolio) {
             c.setAge(c.age + 1);
         }
     }
@@ -80,6 +83,7 @@ public class GamePlay {
         int upperLimit;
         int lowerLimit;
         ArrayList<Clients> pool = cp.getClientPool();
+        ArrayList<Clients> portfolio = cp.getClientList();
         for (Clients c : pool) {
             if (c.age > 30)
 
@@ -130,7 +134,58 @@ public class GamePlay {
                 }
             }
         }
+
+     for (Clients c : portfolio) {
+        if (c.age > 30)
+
+            if (c.potential > 25 && c.potential <= 35) {
+
+                int randInt = rand.nextInt(1) + 1;
+                c.setSkill(c.skill + randInt);
+
+                if (c.skill > c.potential) {
+                    c.skill = c.potential;
+                }
+
+            } else if (c.potential > 35 && c.potential <= 50) {
+
+                lowerLimit = 2;
+                upperLimit = 4;
+                int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
+                c.setSkill(c.skill + randInt);
+                if (c.skill > c.potential) {
+                    c.skill = c.potential;
+                }
+            } else if (c.potential > 50 && c.potential <= 65) {
+
+                lowerLimit = 3;
+                upperLimit = 6;
+                int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
+                c.setSkill(c.skill + randInt);
+                if (c.skill > c.potential) {
+                    c.skill = c.potential;
+                }
+            } else if (c.potential > 65 && c.potential <= 80) {
+
+                lowerLimit = 5;
+                upperLimit = 8;
+                int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
+                c.setSkill(c.skill + randInt);
+                if (c.skill > c.potential) {
+                    c.skill = c.potential;
+                }
+            } else if (c.potential > 80 && c.potential <= 100) {
+
+                lowerLimit = 7;
+                upperLimit = 10;
+                int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
+                c.setSkill(c.skill + randInt);
+                if (c.skill > c.potential) {
+                    c.skill = c.potential;
+                }
+            }
     }
+}
 
 public void clientSalary(){
 int totalSalary = 0;
@@ -146,8 +201,9 @@ int totalSalary = 0;
 
     public void chooseClient() {
         int input = Integer.parseInt(ui.getUserInput("Type in ID on the player you want to negotiate with"));
-        for (Clients c : cp.displayClientList()) {
+        for (Clients c : cp.getClientList()) {
             if (c.id == input) {
+                //ui.displayMessage("ID: " + c.id + "Name: " + c.firstName + " " + c.lastName + "| Position: " + c.position + "Skill: " + c.skill + "Value: " + c.transferValue);
                 neg.runNegotiation(c);
             }
 
