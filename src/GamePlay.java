@@ -8,68 +8,74 @@ public class GamePlay {
     Clients c = new Clients("","","",0,0,0,0, 0);
     Agency a = new Agency();
     public void nextTurn(){
+        clientSalary();
+        aging();
+        skillUpgrade();
+    }
+
+    public void aging(){
+        ArrayList<Clients> pool = cp.getClientPool();
+        for (Clients c : pool) {
+            c.setAge(c.age + 1);
+        }
+    }
+    public void skillUpgrade() {
         Random rand = new Random();
         int upperLimit;
         int lowerLimit;
         ArrayList<Clients> pool = cp.getClientPool();
-            for (Clients c : pool){
-            c.setAge(c.age +1);
+        for (Clients c : pool) {
+            if (c.age > 30)
 
-           // if (c.age < 20) {
+            if (c.potential > 25 && c.potential <= 35) {
 
-                if (c.potential > 25 && c.potential <= 35) {
+                int randInt = rand.nextInt(1) + 1;
+                c.setSkill(c.skill + randInt);
 
-                        int randInt = rand.nextInt(1) + 1;
-                        c.setSkill(c.skill + randInt);
-
-                        if (c.skill > c.potential){
-                            c.skill = c.potential;
-                        }
-
-                } else if (c.potential > 35 && c.potential <= 50) {
-
-                        lowerLimit = 2;
-                        upperLimit = 4;
-                        int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
-                        c.setSkill(c.skill + randInt);
-                    if (c.skill > c.potential){
-                        c.skill = c.potential;
-                    }
-                } else if (c.potential > 50 && c.potential <= 65) {
-
-                        lowerLimit = 3;
-                        upperLimit = 6;
-                        int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
-                        c.setSkill(c.skill + randInt);
-                    if (c.skill > c.potential){
-                        c.skill = c.potential;
-                    }
-                } else if (c.potential > 65 && c.potential <= 80) {
-
-                        lowerLimit = 5;
-                        upperLimit = 8;
-                        int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
-                        c.setSkill(c.skill + randInt);
-                    if (c.skill > c.potential){
-                        c.skill = c.potential;
-                    }
-                } else if (c.potential > 80 && c.potential <= 100) {
-
-                        lowerLimit = 7;
-                        upperLimit = 10;
-                        int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
-                        c.setSkill(c.skill + randInt);
-                    if (c.skill > c.potential){
-                        c.skill = c.potential;
-                    }
+                if (c.skill > c.potential) {
+                    c.skill = c.potential;
                 }
 
+            } else if (c.potential > 35 && c.potential <= 50) {
 
+                lowerLimit = 2;
+                upperLimit = 4;
+                int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
+                c.setSkill(c.skill + randInt);
+                if (c.skill > c.potential) {
+                    c.skill = c.potential;
+                }
+            } else if (c.potential > 50 && c.potential <= 65) {
 
+                lowerLimit = 3;
+                upperLimit = 6;
+                int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
+                c.setSkill(c.skill + randInt);
+                if (c.skill > c.potential) {
+                    c.skill = c.potential;
+                }
+            } else if (c.potential > 65 && c.potential <= 80) {
+
+                lowerLimit = 5;
+                upperLimit = 8;
+                int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
+                c.setSkill(c.skill + randInt);
+                if (c.skill > c.potential) {
+                    c.skill = c.potential;
+                }
+            } else if (c.potential > 80 && c.potential <= 100) {
+
+                lowerLimit = 7;
+                upperLimit = 10;
+                int randInt = rand.nextInt(upperLimit - lowerLimit + 1) + lowerLimit;
+                c.setSkill(c.skill + randInt);
+                if (c.skill > c.potential) {
+                    c.skill = c.potential;
+                }
             }
+        }
+    }
 
-
-}
 public void clientSalary(){
 int totalSalary = 0;
         for (Clients c : a.getPortFolio()){
