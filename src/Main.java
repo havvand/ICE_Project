@@ -5,6 +5,8 @@ public class Main
         GameSetup setup = new GameSetup();
 
         pool.initializeArrayList();
+        pool.removeClientFromPool();
+        //pool.removeClientFromPool();
         pool.addClientsPerTurn();
 
     }
