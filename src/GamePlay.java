@@ -32,8 +32,10 @@ public class GamePlay {
             }
 
         } else if (input == 2) {
-            //cp.getPotentialNewClients;
-            nextTurn();
+            System.out.println("hej");
+            cp.displayClientList();
+            chooseClient();
+            newTurn();
 
         }
 
@@ -51,6 +53,7 @@ public class GamePlay {
                   newTurn();
               }
               if (input == 3){
+                  a.getPortFolio();
                   newTurn();
               }
            }

@@ -11,14 +11,13 @@ public class ClientNegotiation implements Negotiation {
     private final ClientPool cp = new ClientPool();
 
     public void runNegotiation(Clients c) {
-        this.client = c;
         resistancePointSetter(c);
         if (negCount == 0){
         //give initial offer
         agentOffer = textUI.getUserInputNum("Make initial offer for client");
             if(agentOffer >= clientResistancePoint) {
                 System.out.println("I am in!");
-                acceptOffer();
+                acceptOffer(c);
             }
         // check if we're within clients range
         if(agentOffer < clientResistancePoint) {
@@ -30,7 +29,7 @@ public class ClientNegotiation implements Negotiation {
             agentOffer = textUI.getUserInputNum("You can do better than that");
             if(agentOffer >= clientResistancePoint) {
                 System.out.println("I am in!");
-                acceptOffer();
+                acceptOffer(c);
             }
             else{
                 ++negCount;
@@ -42,7 +41,7 @@ public class ClientNegotiation implements Negotiation {
             agentOffer = textUI.getUserInputNum("Last try you...");
             if(agentOffer >= clientResistancePoint) {
                 System.out.println("I am in!");
-                acceptOffer();
+                acceptOffer(c);
 
         }
             else {
@@ -58,7 +57,7 @@ public class ClientNegotiation implements Negotiation {
          ++negCount;
      }
      public int resistancePointSetter(Clients c) {
-
+        this.client = c;
          // resistancePoint is set to skill * 1 mil / 10 which is 10% of their transfervalue
          clientResistancePoint = client.getTransferValue() / 10;
         //returns the resistancePoint for the client by
@@ -68,8 +67,9 @@ public class ClientNegotiation implements Negotiation {
      }
 
     @Override
-    public void acceptOffer() {
-        agency.addClientToAgency(client);
+    public void acceptOffer(Clients c) {
+        this.client = c;
+        agency.addClientToAgency(c);
         bank.withdrawMoney(agentOffer);
         cp.removeClientFromPool();
         //return to clientPool;

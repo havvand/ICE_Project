@@ -25,6 +25,11 @@ public class Agency {
     }
 
     public ArrayList<Clients> getPortFolio() {
+        System.out.println("hej");
+        for (Clients c: agency) {
+            System.out.println(c.id+" Name: "+ c.firstName+" "+c.lastName+"| Position: "+c.position+"| Skill: "+c.skill+"| Value: "+c.transferValue);
+        }
+        System.out.println(agency.size());
         return agency;
     }
 public void setName(String name){

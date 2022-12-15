@@ -7,6 +7,7 @@ public class GameSetup
     Agency a = new Agency("");
     GamePlay gp = new GamePlay();
     Bank b = new Bank();
+    ClientPool cp = new ClientPool();
     public void mainMenu() {
         b.setStartAmount();
         ui.displayMessage("Welcome to Football Agent - The Game!");
@@ -14,6 +15,7 @@ public class GameSetup
         a.setName(input);
         System.out.println(a.getName());
         ui.displayMessage("Game starting:");
+        cp.initializeArrayList();
         gp.newTurn();
 
         //input choice
