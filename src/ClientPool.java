@@ -187,11 +187,6 @@ public class ClientPool {
 
     public void removeClientFromPool ()
     {
-        for (Clients c : clientPool)
-        {
-            System.out.println(c.position + " " + c.id + " " + c.firstName);
-        }
-        System.out.println(clientPool.size());
         int input = textUI.getUserInputNum("Enter player ID to remove player!");
                 //clientPool.get(177).id; // REPLACE WITH USER INPUT
         //removes prospective client from clientPool as they're no longer available
@@ -202,12 +197,6 @@ public class ClientPool {
             {
                 clientPool.remove(i);
             }
-
-        }
-        System.out.println("SIZE AT " + clientPool.size());
-        for (Clients c : clientPool)
-        {
-            System.out.println(c.position + " " + c.id + " " + c.firstName);
         }
     }
 
@@ -227,5 +216,4 @@ public class ClientPool {
     }
 
 
-
-    }
+}
