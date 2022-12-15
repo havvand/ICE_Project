@@ -8,6 +8,7 @@ public class GameSetup
     GamePlay gp = new GamePlay();
     Bank b = new Bank();
     ClientPool cp = new ClientPool();
+
     public void mainMenu() {
         b.setStartAmount();
         ui.displayMessage("Welcome to Football Agent - The Game!");

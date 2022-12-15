@@ -236,14 +236,33 @@ public class ClientPool {
         int player1 = (int)(Math.random()*(9300 - 1000 + 1) + 1000);
 
         //put in new arrayList and display them
+        int count = 0;
         for (Clients c: clientPool) {
-            if(c.age == 16)
-            clientList.add(c);
-        }
-        for (Clients c: clientList) {
-            System.out.println(c.id+" Name: "+ c.firstName+" "+c.lastName+"| Position: "+c.position+"| Skill: "+c.skill+"| Value: "+c.transferValue);
-        }
+            if(c.age >= 16 && c.age <= 22 && clientList.size() <= 12)
+            {
+                if(c.position.equals("Goalkeeper") && count <= 3)
+                {
+                        clientList.add(c);
+                        count++;
+                }
+                if(c.position.equals("Defender") && count > 3 && count <= 6)
+                {
+                        clientList.add(c);
+                        count++;
+                }
+                if(c.position.equals("Midfield") && count > 6 && count <= 9)
+                {
+                    clientList.add(c);
+                    count++;
+                }
+                if(c.position.equals("Forward") && count > 9 && count <= 12)
+                {
+                    clientList.add(c);
+                    count++;
+                }
 
+            }
+        }
         return clientList;
     }
 }

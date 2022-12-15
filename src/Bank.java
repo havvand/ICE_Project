@@ -12,11 +12,11 @@ public class Bank {
 
     public int withdrawMoney(int amountToWithdraw) {
 
-        return balance - amountToWithdraw;
+        return balance -= amountToWithdraw;
     }
 
-    public void taxes() {
-        balance -= tax;
+    public int taxes(int amountToTax) {
+        return amountToTax / 100 * 15;
     }
 
     public boolean isBankrupt() {

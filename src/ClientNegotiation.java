@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class ClientNegotiation implements Negotiation {
     private int agentOffer = 0;
     private int clientResistancePoint;
@@ -57,14 +55,13 @@ public class ClientNegotiation implements Negotiation {
          agentOffer = textUI.getUserInputNum("You can do better than that");
          ++negCount;
      }
-     public int resistancePointSetter(Clients c) {
+     public void resistancePointSetter(Clients c) {
         this.client = c;
          // resistancePoint is set to skill * 1 mil / 10 which is 10% of their transfervalue
          clientResistancePoint = client.getTransferValue() / 10;
         //returns the resistancePoint for the client by
          //if the ability is above a certain
-         System.out.println(clientResistancePoint);
-        return clientResistancePoint;
+         System.out.println("The client " + clientResistancePoint);
      }
 
     @Override
@@ -72,7 +69,7 @@ public class ClientNegotiation implements Negotiation {
         this.client = c;
         agency.addClientToAgency(c);
         bank.withdrawMoney(agentOffer);
-        bank.setBalance(agentOffer);
+        //bank.setBalance(agentOffer);
         cp.removeClientFromPool(c.id);
         //return to clientPool;
 

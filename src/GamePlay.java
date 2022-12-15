@@ -7,19 +7,19 @@ public class GamePlay {
     ClientPool cp = new ClientPool();
     Clients c = new Clients("", "", "", 0, 0, 0, 0, 0);
     Agency a = new Agency("");
-    TextUI ui = new TextUI();
+    TextUI textUI = new TextUI();
     Negotiation neg = new ClientNegotiation();
 
     public void newTurn(){
 
-        ui.displayMessage("How do you wish to proceed?");
-        int input = Integer.parseInt(ui.getUserInput("Press 1 for clientpool" + "\n Press 2 to get a list of potential new clients" + "\n Press 3 enter your agency" + "\n Press 4 to simulate a year forward"));
+        textUI.displayMessage("How do you wish to proceed?");
+        int input = Integer.parseInt(textUI.getUserInput("Press 1 for clientpool" + "\nPress 2 to get a list of potential new clients" + "\nPress 3 enter your agency" + "\nloPress 4 to simulate a year forward"));
 
         if (input == 1) {
             a.getPortFolio();
-            input = Integer.parseInt(ui.getUserInput("Press 1 to remove a client" + "\n Press 2 for menu"));
+            input = Integer.parseInt(textUI.getUserInput("Press 1 to remove a client" + "\n Press 2 for menu"));
             if (input == 1) {
-                input = Integer.parseInt(ui.getUserInput("Type in ID on the player you want to remove"));
+                input = Integer.parseInt(textUI.getUserInput("Type in ID on the player you want to remove"));
                 for (Clients c : a.getPortFolio()) {
                     if (c.id == input) {
                         a.removeClientFromAgency(c);
@@ -32,24 +32,23 @@ public class GamePlay {
             }
 
         } else if (input == 2) {
-            System.out.println("hej");
+            textUI.displayMessage("LIST OF AVAILABLE PLAYERS: ");
             cp.displayClientList();
             chooseClient();
             newTurn();
-
         }
 
 
           else if(input == 3){
-              input = Integer.parseInt(ui.getUserInput("Welcome to: " + a.getName() + "\n Press 1 to display your balance " + "\n Press 2 to upgrade agency" + "\n Press 3 for menu"));
+              input = Integer.parseInt(textUI.getUserInput("Welcome to: " + a.getName() + "\n Press 1 to display your balance " + "\n Press 2 to upgrade agency" + "\n Press 3 for menu"));
               if (input == 1) {
                   b.displayBalance();
                   newTurn();
               }
               if (input == 2){
-                 ui.displayMessage("Your current level is: " + a.getBureauLevel());
+                 textUI.displayMessage("Your current level is: " + a.getBureauLevel() + "\n");
                  a.upgradeAgency();
-                 ui.displayMessage("Your new agency level is: " + a.getBureauLevel());
+                 textUI.displayMessage("Your new agency level is: " + a.getBureauLevel() + "\n");
                   newTurn();
               }
               if (input == 3){
@@ -134,20 +133,34 @@ public class GamePlay {
 
 public void clientSalary(){
 int totalSalary = 0;
-        for (Clients c : a.getPortFolio()){
+        for (Clients c : a.getPortFolio())
+        {
             double salaryPercentage = (c.transferValue / 10);
             int salary = (int) Math.round(salaryPercentage);
             totalSalary += salary;
         }
+    b.displayBalance();
         b.addMoney(totalSalary);
-        int totalTaxes = b.withdrawMoney((totalSalary / 100) * 15);
+        b.displayBalance();
+        int totalTaxes = b.taxes(totalSalary);
+        b.withdrawMoney(totalTaxes);
         System.out.println("You've made " + totalSalary + " this year and paid " + totalTaxes + " in taxes");
     }
 
     public void chooseClient() {
-        int input = Integer.parseInt(ui.getUserInput("Type in ID on the player you want to negotiate with"));
-        for (Clients c : cp.displayClientList()) {
+        ArrayList<Clients> clientList = cp.displayClientList();
+
+        for (Clients c: clientList)
+        {
+            System.out.println("ID: " + c.id +"\nName: " + c.firstName + " " + c.lastName + " Age: " + c.age + " | Position: "+c.position+"| Skill: "+c.skill+"| Value: "+c.transferValue +"\n");
+        }
+
+        int input = Integer.parseInt(textUI.getUserInput("Type in ID on the player you want to negotiate with"));
+
+        for (Clients c : clientList)
+        {
             if (c.id == input) {
+                textUI.displayMessage("\nYou are now in negotiations with: " + "\n" +c.firstName + " " + c.lastName + "\nAge: " + c.age + "\nPosition: "+c.position+"\nSkill: "+c.skill+"\nValue: "+c.transferValue +"\n");
                 neg.runNegotiation(c);
             }
 
