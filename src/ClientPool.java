@@ -195,7 +195,7 @@ public class ClientPool {
     }
 
 
-    public void removeClientFromPool ()
+    public void removeClientFromPool()
     {
 
         int input = textUI.getUserInputNum("Enter player ID to remove player!");
@@ -226,23 +226,6 @@ public class ClientPool {
         {
 
         }
-    }
-    public void removeClientFromPool()
-    {
-        int input = clientPool.get(0).id;
-        //removes prospective client from clientPool as they're no longer available
-        for(int i = 0; i < clientPool.size(); ++i)
-        {
-            if(input == clientPool.get(i).id)
-            {
-                clientPool.remove(clientPool.get(i));
-                break;
-            }
-        }
-
-
-}
-
     }
 
     public ArrayList<Clients> getClientPool() {

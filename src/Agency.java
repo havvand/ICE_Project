@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Agency {
    static String name;
     private int bureauLevel;
-    private ArrayList<Clients> agency = new ArrayList<>();
+    public static ArrayList<Clients> agency = new ArrayList<>();
 
 
     public Agency(String name){
