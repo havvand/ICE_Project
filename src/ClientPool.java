@@ -186,7 +186,8 @@ public class ClientPool {
     public void removeClientFromPool ()
     {
 
-        int input = textUI.getUserInputNum("Enter player ID to remove player!");
+        System.out.println(clientPool.get(100).id);
+        int input = textUI.getUserInputNum("Enter player ID to remove player! OR q to return");
                 //clientPool.get(177).id; // REPLACE WITH USER INPUT
         //removes prospective client from clientPool as they're no longer available
 
@@ -196,11 +197,13 @@ public class ClientPool {
             {
                 System.out.println(clientPool.get(i).id);
                 clientPool.remove(i);
+                // EVT. KALD TIL METODE
+                System.out.println(clientPool.get(i).id);
             }
         }
 
-    }
 
+    }
 
     public static void clearCsv ()
     {
