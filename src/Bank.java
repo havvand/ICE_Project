@@ -1,9 +1,9 @@
 import java.util.Random;
 
 public class Bank {
-    private int balance;
+  static public int balance;
     private int tax;
-
+    int startAmount = 10000000;
     public int addMoney(int amountToAdd) {
 
        return balance += amountToAdd;
@@ -36,6 +36,9 @@ public class Bank {
     }
 
     public void displayBalance(){
-        System.out.println(getBalance());
+        System.out.println("\nYour balance is: "+ getBalance());
+    }
+    public void setStartAmount(){
+        balance = startAmount;
     }
 }

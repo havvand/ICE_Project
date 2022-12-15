@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Agency {
-    String name;
+   static String name;
     private int bureauLevel;
     private ArrayList<Clients> agency = new ArrayList<>();
 
@@ -19,6 +19,7 @@ public class Agency {
         agency.remove(c);
     }
     public void upgradeAgency() {
+        bureauLevel += 1;
         System.out.println("You have upgraded your agency");
 
     }
