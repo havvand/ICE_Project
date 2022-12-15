@@ -1,11 +1,14 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ClientPool
 {
-
-  static   ArrayList<Clients> clientPool = new ArrayList<>(); // Arraylist for counting!
+    static ArrayList<Clients> clientPool = new ArrayList<>(); // Arraylist for counting!
     Clients client = new Clients("", "", "", 0,0, 0, 0, 0);
 
     public ClientPool()
@@ -15,6 +18,7 @@ public class ClientPool
     public void initializeArrayList()
     {
         clientPool = createClientPoolArray();
+        System.out.println(clientPool.get(0).firstName);
     }
 
 
@@ -94,10 +98,10 @@ public class ClientPool
             clientPoolList.add(client.newClient(4, i + 1));
         }
 
-        for (Clients c : clientPoolList)
+        /*for (Clients c : clientPoolList)
         {
             System.out.println("Client ID: " + c.id + "\n Name: " + c.firstName + " " + c.lastName + "\n Age: " + c.age + "\n Position: " +c.position + "\n Skill: " +  c.skill + "\n Transfer Value: " + c.transferValue);
-        }
+        }*/
 
         /*try
         {
@@ -118,42 +122,58 @@ public class ClientPool
     }
 
     // So far the method is only checking how many of each type player there are in the pool!
-    public void addNewClient()
+    public void addClientsPerTurn()
     {
         int goalKeeper = 0;
         int defender = 0;
         int midfield = 0;
         int forward = 0;
 
-        for(Clients c : clientPool)
+        removeClientFromPool(clientPool.get(0));
+
+            for (Clients c : clientPool)
+            {
+                if (c.position.equals("Goalkeeper")) {
+                    goalKeeper++;
+                }
+                if (c.position.equals("Defender")) {
+                    defender++;
+                }
+                if (c.position.equals("Midfield")) {
+                    midfield++;
+                }
+                if (c.position.equals("Forward")) {
+                    forward++;
+                }
+
+            }
+
+            System.out.println("Active goalkeepers: \n" + goalKeeper +
+                    "\nActive defenders: \n" + defender +
+                    "\nActive midfielders: \n" + midfield +
+                    "\nActive forwards: \n" + forward);
+
+            System.out.println("BEFORE " + clientPool.get(0).firstName + " " + clientPool.get(0).id);
+            System.out.println("Nr. 50 " + clientPool.get(50).firstName);
+            System.out.println(clientPool.size());
+
+        if(goalKeeper < 50)
         {
-            if (c.position.equals("Goalkeeper"))
+            for(int i = clientPool.size(); i < 550; i++)
             {
-                goalKeeper++;
-                System.out.println("int GoalK " + goalKeeper);
-            }
-            if (c.position.equals("Defender"))
-            {
-                defender++;
-                System.out.println("int Defender " + defender);
-            }
-            if (c.position.equals("Midfield"))
-            {
-                midfield++;
-                System.out.println("int Midfield " + midfield);
-            }
-            if (c.position.equals("Forward"))
-            {
-                forward++;
-                System.out.println("int Forward " + forward);
+                System.out.println("INSIDE ADD LOOP");
+                clientPool.add(client.newClient(1, i));
+                System.out.println(clientPool.get(549).firstName);
+
+                System.out.println(clientPool.size());
             }
 
         }
+       for(Clients c : clientPool)
+       {
+           System.out.println(c.position + " " + c.id + " " + c.firstName);
+       }
 
-        System.out.println("Active goalkeepers: \n" + goalKeeper +
-                            "\nActive defenders: \n" + defender +
-                            "\nActive midfielders: \n" + midfield +
-                            "\nActive forwards: \n" + forward);
     }
 
     public static void clearCsv() {
@@ -169,9 +189,11 @@ public class ClientPool
 
         }
     }
-    public void removeClientFromPool(Clients client) {
+    public void removeClientFromPool(Clients client)
+    {
         //removes prospective client from clientPool as they're no longer available
         clientPool.remove(client);
+        System.out.println("REMOVED " + client.firstName);
     }
 
     public ArrayList<Clients> getClientPool() {
