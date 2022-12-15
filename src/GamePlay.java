@@ -17,7 +17,7 @@ public class GamePlay {
 
         if (input == 1) {
             a.getPortFolio();
-            input = Integer.parseInt(textUI.getUserInput("Press 1 to remove a client" + "\n Press 2 for menu"));
+            input = Integer.parseInt(textUI.getUserInput("Press 1 to remove a client" + "\nPress 2 for menu"));
             if (input == 1) {
                 input = Integer.parseInt(textUI.getUserInput("Type in ID on the player you want to remove"));
                 for (Clients c : a.getPortFolio()) {
@@ -75,10 +75,13 @@ public class GamePlay {
         }
     }
     public void skillUpgrade() {
+        System.out.println("NEXT TURNNNNNN");
         Random rand = new Random();
         int upperLimit;
         int lowerLimit;
         ArrayList<Clients> pool = cp.getClientPool();
+        System.out.println("POOOOOOOOOOOOOOOOOL " + pool.get(0).getSkill() + pool.get(0).potential);
+        // Vores agency-player liste mangler her - de bliver ikke opdatereset efter hver omgang.
         for (Clients c : pool) {
             if (c.age > 30)
 
