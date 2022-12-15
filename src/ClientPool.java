@@ -133,16 +133,13 @@ public class ClientPool {
                 "\nActive midfielders: \n" + midfield +
                 "\nActive forwards: \n" + forward);
 
-        System.out.println("POOL SIZE BEFORE ADD " + clientPool.size());
-
         addClientsPerTurn();
     }
 
     // So far the method is only checking how many of each type player there are in the pool!
     public void addClientsPerTurn()
     {
-        countPlayerType();
-
+        System.out.println(clientPool.size());
         if (goalKeeper < 50)
         {
             for (int i = clientPool.size(); i < 550; i++)
@@ -182,26 +179,24 @@ public class ClientPool {
         {
             System.out.println(c.position + " " + c.id + " " + c.firstName);
         }
-
+        System.out.println(clientPool.size());
     }
 
 
     public void removeClientFromPool ()
     {
-        System.out.println(clientPool.get(0).id);
+
         int input = textUI.getUserInputNum("Enter player ID to remove player!");
                 //clientPool.get(177).id; // REPLACE WITH USER INPUT
         //removes prospective client from clientPool as they're no longer available
 
-        for (int i = 0; i < clientPool.size(); ++i)
+        for (int i = 0; i < clientPool.size(); i++)
         {
             if (input == clientPool.get(i).id)
             {
+                System.out.println(clientPool.get(i).id);
                 clientPool.remove(i);
-                break;
             }
-            else if (input != clientPool.get(i).id)
-                removeClientFromPool();
         }
 
     }
