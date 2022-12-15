@@ -6,11 +6,60 @@ public class GamePlay {
     Bank b = new Bank();
     ClientPool cp = new ClientPool();
     Clients c = new Clients("","","",0,0,0,0, 0);
-    Agency a = new Agency();
+
+    public void newTurn(){
+
+        ui.displayMessage("How do you wish to proceed?");
+       int input = Integer.parseInt(ui.getUserInput("Press 1 for clientpool" + "\n Press 2 to get a list of potential new clients" + "\n Press 3 enter your agency" + "\n Press 4 to simulate a year forward"));
+
+       if (input == 1){
+           a.getPortFolio();
+           input = Integer.parseInt(ui.getUserInput("Press 1 to remove a client" + "\n Press 2 for menu"));
+           if (input == 1) {
+               input = Integer.parseInt(ui.getUserInput("Type in ID on the player you want to remove"));
+               for (Clients c : a.getPortFolio()) {
+                   if (c.id == input) {
+                       a.removeClientFromAgency(c);
+                       newTurn();
+                   }
+               }
+           }
+           if (input == 2){
+               newTurn();
+           }
+
+       }
+           else if (input == 2){
+               //cp.getPotentialNewClients;
+               nextTurn();
+
+           }
+
+          else if(input == 3){
+              ui.getUserInput("Welcome to: " + a.getName() + "\n Press 1 to display your balance " + "\n Press 2 to upgrade agency" + "\n Press 3 for menu");
+              if (input == 1) {
+                  b.displayBalance();
+                  newTurn();
+              }
+              if (input == 2){
+                 ui.displayMessage("Your current level is: " + a.getBureauLevel());
+                 a.upgradeAgency();
+                  newTurn();
+              }
+              if (input == 3){
+                  newTurn();
+              }
+           }
+          else if (input == 4){
+              nextTurn();
+       }
+
+    }
     public void nextTurn(){
         clientSalary();
         aging();
         skillUpgrade();
+        newTurn();
     }
 
     public void aging(){

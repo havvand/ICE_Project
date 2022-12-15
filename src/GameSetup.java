@@ -1,13 +1,18 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GameSetup
+public class GameSetup extends GamePlay
 {
-    public void run(){
-        mainMenu();
-    }
+    TextUI ui = new TextUI();
+    Agency a = new Agency("");
+    GamePlay gp = new GamePlay();
     public void mainMenu() {
-        //Welcome to game bla.. bla..
+        ui.displayMessage("Welcome to Football Agent - The Game!");
+        String input = ui.getUserInput("Please enter the name of your Agency");
+        a.setName(input);
+        System.out.println(a.getName());
+        ui.displayMessage("Game starting:");
+        gp.newTurn();
 
         //input choice
         /* 1. Clients

@@ -7,7 +7,7 @@ public class ClientNegotiation implements Negotiation {
     private final Bank bank = new Bank();
     private final TextUI textUI = new TextUI();
     private final Clients client = new Clients("","","",0,0,0,0, 0);
-    private final Agency agency = new Agency();
+    private final Agency agency = new Agency("");
     private final ClientPool cp = new ClientPool();
 
     public void runNegotiation() {
