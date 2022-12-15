@@ -1,15 +1,10 @@
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class ClientPool
 {
-    static ArrayList<Clients> clientPool = new ArrayList<>(); // Arraylist for counting!
-    Clients client = new Clients("", "", "", 0,0, 0, 0, 0);
+    static ArrayList<Clients> clientPool = new ArrayList<>();
+    Clients client = new Clients("", "", "", 1,0, 0, 0, 0);
 
     public ClientPool()
     {
@@ -18,7 +13,7 @@ public class ClientPool
     public void initializeArrayList()
     {
         clientPool = createClientPoolArray();
-        System.out.println(clientPool.get(0).firstName);
+        System.out.println("INITALIZE ARRAYLIST " + clientPool.get(0).firstName);
     }
 
 
@@ -29,7 +24,7 @@ public class ClientPool
         for(int i = 0; i < 50; i++)
         {
             try {
-                client = client.newClient(1, i + 1);
+                client = client.newClient(1, 0 );
                 //Scanner reader = new Scanner("data/userdata.txt");
                 FileWriter writer = new FileWriter("data/clientpool.csv", true);
                 writer.write(client.id + ";" + client.firstName + ";" + client.lastName + ";" + client.age + ";" + client.position + ";" +  client.skill + ";" +  client.potential + ";" + client.transferValue +";\n");
@@ -41,7 +36,7 @@ public class ClientPool
         for(int i = 50; i < 250; i++)
         {
             try {
-                client = client.newClient(2, i + 1);
+                client = client.newClient(2, 0);
                 //Scanner reader = new Scanner("data/userdata.txt");
                 FileWriter writer = new FileWriter("data/clientpool.csv", true);
                 writer.write(client.id + ";" + client.firstName + ";" + client.lastName + ";" + client.age + ";" + client.position + ";" +  client.skill + ";" +  client.potential + ";" + client.transferValue +";\n");
@@ -53,7 +48,7 @@ public class ClientPool
         for(int i = 250; i < 450; i++)
         {
             try {
-                client = client.newClient(3, i + 1);
+                client = client.newClient(3, 0);
                 //Scanner reader = new Scanner("data/userdata.txt");
                 FileWriter writer = new FileWriter("data/clientpool.csv", true);
                 writer.write(client.id + ";" + client.firstName + ";" + client.lastName + ";" + client.age + ";" + client.position + ";" +  client.skill + ";" +  client.potential + ";" + client.transferValue +";\n");
@@ -65,7 +60,7 @@ public class ClientPool
         for(int i = 450; i < 550; i++)
         {
             try {
-                client = client.newClient(4, i + 1);
+                client = client.newClient(4, 0);
                 //Scanner reader = new Scanner("data/userdata.txt");
                 FileWriter writer = new FileWriter("data/clientpool.csv", true);
                 writer.write(client.id + ";" + client.firstName + ";" + client.lastName + ";" + client.age + ";" + client.position + ";" +  client.skill + ";" +  client.potential + ";" + client.transferValue +";\n");
@@ -83,19 +78,20 @@ public class ClientPool
 
         for(int i = 0; i < 50; i++)
         {
-            clientPoolList.add(client.newClient(1, i + 1));
+            clientPoolList.add(client.newClient(1, i));
         }
         for(int i = 50; i < 250; i++)
         {
-            clientPoolList.add(client.newClient(2, i + 1));
+            clientPoolList.add(client.newClient(2, i));
+
         }
         for(int i = 250; i < 450; i++)
         {
-            clientPoolList.add(client.newClient(3, i + 1));
+            clientPoolList.add(client.newClient(3, i));
         }
         for(int i = 450; i < 550; i++)
         {
-            clientPoolList.add(client.newClient(4, i + 1));
+            clientPoolList.add(client.newClient(4,i));
         }
 
         /*for (Clients c : clientPoolList)
@@ -129,8 +125,6 @@ public class ClientPool
         int midfield = 0;
         int forward = 0;
 
-        removeClientFromPool(clientPool.get(0));
-
             for (Clients c : clientPool)
             {
                 if (c.position.equals("Goalkeeper")) {
@@ -153,17 +147,28 @@ public class ClientPool
                     "\nActive midfielders: \n" + midfield +
                     "\nActive forwards: \n" + forward);
 
-            System.out.println("BEFORE " + clientPool.get(0).firstName + " " + clientPool.get(0).id);
-            System.out.println("Nr. 50 " + clientPool.get(50).firstName);
-            System.out.println(clientPool.size());
+           System.out.println("POOL SIZE BEFORE ADD " + clientPool.size());
 
         if(goalKeeper < 50)
         {
             for(int i = clientPool.size(); i < 550; i++)
             {
                 System.out.println("INSIDE ADD LOOP");
-                clientPool.add(client.newClient(1, i));
-                System.out.println(clientPool.get(549).firstName);
+                System.out.println("ADDED " + clientPool.add(client.newClient(1, i)));
+                System.out.println("INSIDE GOALLOOP " + clientPool.get(548).firstName);
+
+                System.out.println("POOL SIZE AFTER GOAL ADD " + clientPool.size());
+                System.out.println("GOAL KEEPR AFTER ADD " + goalKeeper);
+            }
+
+        }
+        if(defender < 200)
+        {
+            for(int i = clientPool.size(); i < 550; i++)
+            {
+                System.out.println("INSIDE ADD LOOP");
+                System.out.println("ADDED DEF " + clientPool.add(client.newClient(2, i)));
+                System.out.println("INSIDE DEFENDER LOOP " + clientPool.get(549).firstName);
 
                 System.out.println(clientPool.size());
             }
@@ -189,11 +194,28 @@ public class ClientPool
 
         }
     }
-    public void removeClientFromPool(Clients client)
+    public void removeClientFromPool()
     {
+        System.out.println("SISISIZE " + clientPool.size());
+        System.out.println(clientPool.get(0).firstName + " " + clientPool.get(0).id);
+        int input = clientPool.get(0).id;
+        System.out.println(input);
         //removes prospective client from clientPool as they're no longer available
-        clientPool.remove(client);
-        System.out.println("REMOVED " + client.firstName);
+        for(int i = 0; i < clientPool.size(); ++i)
+        {
+            System.out.println("BEFORE WWW " + clientPool.get(i).id);
+            if(input == clientPool.get(i).id)
+            {
+                System.out.println(clientPool.get(0).id);
+                System.out.println("INTPUT " + input);
+                clientPool.remove(clientPool.get(i));
+                System.out.println(clientPool.get(0).id);
+                break;
+            }
+        }
+
+
+
     }
 
     public ArrayList<Clients> getClientPool() {

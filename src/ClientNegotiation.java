@@ -66,14 +66,14 @@ public class ClientNegotiation implements Negotiation {
     public void acceptOffer() {
         agency.addClientToAgency(client);
         bank.withdrawMoney(agentOffer);
-        cp.removeClientFromPool(client);
+        cp.removeClientFromPool();
         //return to clientPool;
 
     }
 
     @Override
     public void declineOffer() {
-        cp.removeClientFromPool(client);
+        cp.removeClientFromPool();
         //return to clientPool;
 
     }
