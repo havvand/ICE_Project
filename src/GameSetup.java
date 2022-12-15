@@ -3,6 +3,9 @@ import java.util.Random;
 
 public class GameSetup
 {
+    public void run(){
+        mainMenu();
+    }
     public void mainMenu() {
         //Welcome to game bla.. bla..
 

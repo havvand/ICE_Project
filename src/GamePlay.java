@@ -76,14 +76,18 @@ public class GamePlay {
         }
     }
 
-public void clientSalary(){
-int totalSalary = 0;
+    public void clientSalary(){
+    int totalSalary = 0;
         for (Clients c : a.getPortFolio()){
             double salaryPercentage = (c.transferValue / 10);
             int salary = (int) Math.round(salaryPercentage);
             totalSalary += salary;
         }
     b.addMoney(totalSalary);
-    b.withdrawMoney((totalSalary/100)*15);
-}
+    int totalTaxes = b.withdrawMoney((totalSalary/100)*15);
+        System.out.println("You've made "+totalSalary+ " this year and paid "+totalTaxes+" in taxes");
+    }
+
+
+
 }

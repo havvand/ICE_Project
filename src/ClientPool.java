@@ -222,4 +222,21 @@ public class ClientPool
 
         return clientPool;
     }
+
+    public ArrayList<Clients> displayClientList() {
+
+        ArrayList<Clients> clientList = new ArrayList<>();
+        int player1 = (int)(Math.random()*(9300 - 1000 + 1) + 1000);
+
+        //put in new arrayList and display them
+        for (Clients c: clientPool) {
+            if(c.age == 16)
+            clientList.add(c);
+        }
+        for (Clients c: clientList) {
+            System.out.println(c.id+" Name: "+ c.firstName+" "+c.lastName+"| Position: "+c.position+"| Skill: "+c.skill+"| Value: "+c.transferValue);
+        }
+
+        return clientList;
+    }
 }

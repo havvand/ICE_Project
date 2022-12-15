@@ -2,15 +2,10 @@ import java.util.Scanner;
 
 public class ClientNegotiation implements Negotiation {
     private int agentOffer;
-    private int agentTargetPoint;
-    private int agentResistancePoint;
-    private int clientTargetPoint;
     private int clientResistancePoint;
     private int negCount = 0;
     private final Bank bank = new Bank();
     private final TextUI textUI = new TextUI();
-
-    private final Scanner scanner = new Scanner(System.in);
     private final Clients client = new Clients("","","",0,0,0,0, 0);
     private final Agency agency = new Agency();
     private final ClientPool cp = new ClientPool();
@@ -49,18 +44,6 @@ public class ClientNegotiation implements Negotiation {
          //if the ability is above a certain
         return clientResistancePoint;
      }
-     /* public int targetPointSetter() {
-        //returns the targetPoint for the client by
-        return clientTargetPoint;
-     }
-
-     public void negotiationType() {
-        //based on certain attribute from player a difficulty is set for the negotiations
-        // three different forms of negotiations are present:
-        // 1. The tough type (not willing to budge on what they want)
-        // 2. Compromise (more amicable towards finding something that serves both parties)
-        // 3. The weak type (typically accepts within initial or second offer
-    }*/
 
     @Override
     public void acceptOffer() {
