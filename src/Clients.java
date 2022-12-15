@@ -1,26 +1,98 @@
+import java.util.Random;
+
 public class Clients
 {
+    FileIO fileIo = new FileIO();
+    // 50 goalies : 200 defenders : 200 midfield : 100 forwards.
     String firstName, lastName, position;
-    int age, skill, potential, transferValue;
+    int id, age, skill, potential, transferValue;
 
-    public Clients(String firstName, String lastName, String position, int age, int skill, int potential, int transferValue)
+    public Clients(String firstName, String lastName, String position, int id, int age, int skill, int potential, int transferValue)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
+        this.id = id;
         this.age = age;
         this.skill = skill;
         this.potential = potential;
         this.transferValue = transferValue;
     }
 
-    public Clients newClient()
+    public Clients newClient(int type, int id)
     {
-        return new Clients("Ole", "Jensen", "top", 22, 44, 3, 1000000);
+        id += (int)(Math.random()*(9300 - 1000 + 1) + 1000);;
+        potential = (int)(Math.random()*(100 - 25 + 1) + 25);
+        age = (int)(Math.random()*(28 - 16 + 1) + 16);
+        skill = (int)(Math.random()*(potential - 25 + 1) + 25);
+        transferValue = (skill*1000000);
+
+        if (type == 1)
+        {
+            String firstName = fileIo.getAFirstName();
+            String lastName = fileIo.getALastName();
+
+            return new Clients(firstName, lastName, "Goalkeeper", id, age, skill, potential, transferValue);
+        }
+        if (type == 2)
+        {
+            String firstName = fileIo.getAFirstName();
+            String lastName = fileIo.getALastName();
+
+            return new Clients(firstName, lastName, "Defender", id, age, skill, potential, transferValue);
+        }
+        if (type == 3)
+        {
+            String firstName = fileIo.getAFirstName();
+            String lastName = fileIo.getALastName();
+
+            return new Clients(firstName, lastName, "Midfield", id, age, skill, potential, transferValue);
+        }
+        if (type == 4)
+        {
+            String firstName = fileIo.getAFirstName();
+            String lastName = fileIo.getALastName();
+
+            return new Clients(firstName, lastName, "Forward", id, age, skill, potential, transferValue);
+        }
+
+        return null;
     }
 
     public String toString()
     {
-        return this.firstName;
+        return "";
+    }
+
+    public int getPotential() {
+        return potential;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getSkill() {
+        return skill;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setSkill(int skill) {
+        this.skill = skill;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public int getTransferValue() {
+        return transferValue;
     }
 }

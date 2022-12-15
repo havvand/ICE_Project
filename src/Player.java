@@ -2,12 +2,14 @@ import java.util.ArrayList;
 
 public class Player {
     ArrayList <Clients> playerClientPool = new ArrayList<>();
-    Bank ballance = new Bank(0);
+    Bank balance = new Bank();
+    Agency agency = new Agency();
 
 
-    public Player(ArrayList<Clients> playerClientPool, Bank ballance){
-        this.ballance = ballance;
+    public Player(ArrayList<Clients> playerClientPool, Bank balance){
+        this.balance = balance;
         this.playerClientPool = playerClientPool;
     }
+
 
 }

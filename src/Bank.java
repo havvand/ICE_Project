@@ -1,21 +1,17 @@
+import java.util.Random;
+
 public class Bank {
     private int balance;
     private int tax;
 
-    public Bank(int startAmount) {
-        balance = startAmount;
+    public int addMoney(int amountToAdd) {
+
+       return balance += amountToAdd;
     }
 
-    public void addMoney(int balance) {
-        int amountToAdd = 0;
+    public int withdrawMoney(int amountToWithdraw) {
 
-        balance += amountToAdd;
-    }
-
-    public void withdrawMoney(int balance) {
-        int amountToWithdraw = 0;
-
-        balance -= amountToWithdraw;
+        return balance - amountToWithdraw;
     }
 
     public void taxes() {
@@ -23,7 +19,12 @@ public class Bank {
     }
 
     public boolean isBankrupt() {
-        return getBalance() >= 0;
+       /*if (getBalance() > 0 && turns >= 5) {
+            System.out.println("Game Over! - Your agency is bankrupt");
+            //return to main menu
+            return true;
+        }*/
+        return false;
     }
 
     public int getBalance() {
@@ -34,4 +35,7 @@ public class Bank {
         this.balance = balance;
     }
 
+    public void displayBalance(){
+        System.out.println(getBalance());
+    }
 }

@@ -1,23 +1,21 @@
-import java.sql.Array;
+import java.util.ArrayList;
 
-public class Agency  {
-
-    int bureauLevel;
-
-    Clients [] portfolio1;
-    Clients [] portfolio2;
-    Clients [] portfolio3;
-
-    public void makePortfolio(Clients [] portfolio){
-        for (Clients c:portfolio) {
-            makePortfolio(portfolio);
-        }
-    }
-
-
-
+public class Agency {
+    private int bureauLevel;
+    private ArrayList<Clients> agency = new ArrayList<>();
     public int getBureauLevel() {
         return bureauLevel;
     }
+    public void addClientToAgency(Clients c) {
+        //adds the prospective client to Agency
+        agency.add(c);
+    }
+    public void removeClientFromAgency(Clients c) {
+        agency.remove(c);
+    }
+    public void upgradeAgency() {
+
+    }
+
     }
 

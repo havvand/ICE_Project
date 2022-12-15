@@ -2,14 +2,12 @@ public class Main
 {
     public static void main(String[] args) {
         ClientPool pool = new ClientPool();
-        TextUI ui = new TextUI();
-        FileIO io = new FileIO();
+        GameSetup setup = new GameSetup();
 
-      //io.getAFirstName();
-      ui.printArray(io.initiateClubs());
-       // io.getAFirstName();
-    //  ui.printArray(io.firstNameList);
-
+        pool.initializeArrayList();
+        pool.removeClientFromPool();
+        //pool.removeClientFromPool();
+        pool.addClientsPerTurn();
 
     }
 }
