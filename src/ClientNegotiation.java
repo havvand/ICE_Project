@@ -46,7 +46,7 @@ public class ClientNegotiation implements Negotiation {
         }
             else {
                 System.out.println(client.getFirstName()+" "+client.getLastName()+" has left the negotiation without a deal");
-                declineOffer();
+                declineOffer(c);
             }
         // leave negotiation and return to player list
     }
@@ -71,14 +71,14 @@ public class ClientNegotiation implements Negotiation {
         this.client = c;
         agency.addClientToAgency(c);
         bank.withdrawMoney(agentOffer);
-        cp.removeClientFromPool();
+        cp.removeClientFromPool(c.id);
         //return to clientPool;
 
     }
 
     @Override
-    public void declineOffer() {
-        cp.removeClientFromPool();
+    public void declineOffer(Clients c) {
+        cp.removeClientFromPool(c.id);
         //return to clientPool;
 
     }

@@ -195,26 +195,20 @@ public class ClientPool {
     }
 
 
-    public void removeClientFromPool()
+    public void removeClientFromPool(int id)
     {
-
-        System.out.println(clientPool.get(100).id);
-        int input = textUI.getUserInputNum("Enter player ID to remove player! OR q to return");
-                //clientPool.get(177).id; // REPLACE WITH USER INPUT
+        GamePlay game = new GamePlay();
+        //clientPool.get(177).id; // REPLACE WITH USER INPUT
         //removes prospective client from clientPool as they're no longer available
-
-        for (int i = 0; i < clientPool.size(); i++)
-        {
-            if (input == clientPool.get(i).id)
+            for (int i = 0; i < clientPool.size(); i++)
             {
-                System.out.println(clientPool.get(i).id);
-                clientPool.remove(i);
-                // EVT. KALD TIL METODE
-                System.out.println(clientPool.get(i).id);
+                if (id == clientPool.get(i).id)
+                {
+                    System.out.println("Player removed from agency " + clientPool.get(i).id + " " + clientPool.get(i).getFirstName());
+                    clientPool.remove(i);
+                }
             }
-        }
-
-
+            game.newTurn();
     }
 
     public static void clearCsv ()
