@@ -204,7 +204,7 @@ public class ClientPool {
             {
                 if (id == clientPool.get(i).id)
                 {
-                    System.out.println("Player removed from agency " + clientPool.get(i).id + " " + clientPool.get(i).getFirstName());
+                    System.out.println("Player removed " + clientPool.get(i).id + " " + clientPool.get(i).getFirstName());
                     clientPool.remove(i);
                 }
             }

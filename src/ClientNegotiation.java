@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class ClientNegotiation implements Negotiation {
-    private int agentOffer;
+    private int agentOffer = 0;
     private int clientResistancePoint;
     private int negCount = 0;
     private final Bank bank = new Bank();
@@ -29,6 +29,7 @@ public class ClientNegotiation implements Negotiation {
             agentOffer = textUI.getUserInputNum("You can do better than that");
             if(agentOffer >= clientResistancePoint) {
                 System.out.println("I am in!");
+                System.out.println("Player added to agency!");
                 acceptOffer(c);
             }
             else{
@@ -71,6 +72,7 @@ public class ClientNegotiation implements Negotiation {
         this.client = c;
         agency.addClientToAgency(c);
         bank.withdrawMoney(agentOffer);
+        bank.setBalance(agentOffer);
         cp.removeClientFromPool(c.id);
         //return to clientPool;
 
