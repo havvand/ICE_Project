@@ -1,13 +1,15 @@
-public class Main
-{
+public class Main {
     public static void main(String[] args) {
-        ClientPool pool = new ClientPool();
-        GameSetup setup = new GameSetup();
 
-        pool.initializeArrayList();
-        pool.removeClientFromPool();
-        //pool.removeClientFromPool();
-        pool.addClientsPerTurn();
+        GamePlay gp = new GamePlay();
+        ClientPool cp = new ClientPool();
+        FileIO io = new FileIO();
+
+
+        cp.initializeArrayList();
+        gp.nextTurn();
+
 
     }
 }
+

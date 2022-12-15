@@ -217,4 +217,9 @@ public class ClientPool
 
 
     }
+
+    public ArrayList<Clients> getClientPool() {
+
+        return clientPool;
+    }
 }

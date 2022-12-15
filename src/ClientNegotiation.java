@@ -27,20 +27,14 @@ public class ClientNegotiation implements Negotiation {
             improvedOffer();
         }
         if(agentOffer >= clientResistancePoint) {
-            System.out.println("Wow! I am in!");
+            System.out.println("I am in!");
             acceptOffer();
         }
-        //accept or decline until max iteration
         if(negCount > 3) {
             System.out.println(client.getFirstName()+" "+client.getLastName()+" has left the negotiation without a deal");
             declineOffer();
         }
-        //accept or decline
-        /* run acceptOffer() or declineOffer() and then iterate over offer*/
-
-        /* input = new offer */
-
-        /* leave negotiation and return to player list */
+        // leave negotiation and return to player list
     }
      public void improvedOffer() {
          //improve offer on decline
