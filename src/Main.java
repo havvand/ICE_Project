@@ -1,13 +1,13 @@
 public class Main {
     public static void main(String[] args) {
 
-        GamePlay gp = new GamePlay();
+       GameSetup gameSetup = new GameSetup();
         ClientPool cp = new ClientPool();
-        FileIO io = new FileIO();
+
+       gameSetup.mainMenu();
 
 
-        cp.initializeArrayList();
-        gp.nextTurn();
+
 
 
     }
