@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class ClientPool {
     TextUI textUI = new TextUI();
     static ArrayList<Clients> clientPool = new ArrayList<>();
+   static ArrayList<Clients> clientList = new ArrayList<>();
     Clients client = new Clients("", "", "", 1, 0, 0, 0, 0);
     int goalKeeper, defender, midfield, forward;
 
@@ -195,24 +196,21 @@ public class ClientPool {
     }
 
 
-    public void removeClientFromPool()
+    public void removeClientFromPool(int id)
     {
-
-        int input = textUI.getUserInputNum("Enter player ID to remove player!");
-                //clientPool.get(177).id; // REPLACE WITH USER INPUT
+        GamePlay game = new GamePlay();
+        //clientPool.get(177).id; // REPLACE WITH USER INPUT
         //removes prospective client from clientPool as they're no longer available
-
-        for (int i = 0; i < clientPool.size(); i++)
-        {
-            if (input == clientPool.get(i).id)
+            for (int i = 0; i < clientPool.size(); i++)
             {
-                System.out.println(clientPool.get(i).id);
-                clientPool.remove(i);
+                if (id == clientPool.get(i).id)
+                {
+                    System.out.println("Player removed " + clientPool.get(i).id + " " + clientPool.get(i).getFirstName());
+                    clientPool.remove(i);
+                }
             }
-        }
-
+            game.newTurn();
     }
-
 
     public static void clearCsv ()
     {
@@ -232,10 +230,13 @@ public class ClientPool {
 
         return clientPool;
     }
+    public ArrayList<Clients> getClientList(){
+        return clientList;
+    }
 
     public ArrayList<Clients> displayClientList() {
 
-        ArrayList<Clients> clientList = new ArrayList<>();
+
         int player1 = (int)(Math.random()*(9300 - 1000 + 1) + 1000);
 
         //put in new arrayList and display them
@@ -244,7 +245,7 @@ public class ClientPool {
             clientList.add(c);
         }
         for (Clients c: clientList) {
-            System.out.println(c.id+" Name: "+ c.firstName+" "+c.lastName+"| Position: "+c.position+"| Skill: "+c.skill+"| Value: "+c.transferValue);
+            System.out.println("ID: " + c.id+" Name: "+ c.firstName+" "+c.lastName+"| Position: "+c.position+"| Skill: "+c.skill+"| Value: "+c.transferValue);
         }
 
         return clientList;

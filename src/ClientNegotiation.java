@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class ClientNegotiation implements Negotiation {
-    private int agentOffer;
+    private int agentOffer = 0;
     private int clientResistancePoint;
     private int negCount = 0;
     private final Bank bank = new Bank();
@@ -29,6 +29,7 @@ public class ClientNegotiation implements Negotiation {
             agentOffer = textUI.getUserInputNum("You can do better than that");
             if(agentOffer >= clientResistancePoint) {
                 System.out.println("I am in!");
+                System.out.println("Player added to agency!");
                 acceptOffer(c);
             }
             else{
@@ -46,7 +47,7 @@ public class ClientNegotiation implements Negotiation {
         }
             else {
                 System.out.println(client.getFirstName()+" "+client.getLastName()+" has left the negotiation without a deal");
-                declineOffer();
+                declineOffer(c);
             }
         // leave negotiation and return to player list
     }
@@ -62,6 +63,7 @@ public class ClientNegotiation implements Negotiation {
          clientResistancePoint = client.getTransferValue() / 10;
         //returns the resistancePoint for the client by
          //if the ability is above a certain
+         textUI.displayMessage("ID: " + c.id+ " Name: " + c.firstName+" "+c.lastName+"| Position: "+c.position+"| Skill: "+c.skill+"| Value: "+c.transferValue);
          System.out.println(clientResistancePoint);
         return clientResistancePoint;
      }
@@ -71,14 +73,12 @@ public class ClientNegotiation implements Negotiation {
         this.client = c;
         agency.addClientToAgency(c);
         bank.withdrawMoney(agentOffer);
-        cp.removeClientFromPool();
-        //return to clientPool;
-
+        cp.removeClientFromPool(c.id);
     }
 
     @Override
-    public void declineOffer() {
-        cp.removeClientFromPool();
+    public void declineOffer(Clients c) {
+        cp.removeClientFromPool(c.id);
         //return to clientPool;
 
     }
