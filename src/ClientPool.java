@@ -195,13 +195,12 @@ public class ClientPool {
         int input = textUI.getUserInputNum("Enter player ID to remove player!");
                 //clientPool.get(177).id; // REPLACE WITH USER INPUT
         //removes prospective client from clientPool as they're no longer available
+        int size = clientPool.size();
         for (int i = 0; i < clientPool.size(); ++i)
         {
             if (input == clientPool.get(i).id)
             {
-                System.out.println(clientPool.get(clientPool.size()).id+1);
-                clientPool.remove(clientPool.get(i));
-                System.out.println(clientPool.get(i).id);
+                clientPool.remove(i);
             }
 
         }
