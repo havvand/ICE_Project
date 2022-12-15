@@ -5,6 +5,7 @@ public class Agency {
     private int bureauLevel;
     private ArrayList<Clients> agency = new ArrayList<>();
 
+
     public Agency(String name){
         this.name = name;
             }
