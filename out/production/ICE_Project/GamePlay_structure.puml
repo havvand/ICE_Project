@@ -1,0 +1,257 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "GamePlay",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1199178073 { 
+   	label=ClientPool
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   ClientPool1199178073[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ClientPool</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   client: Clients [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addClientsPerTurn()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ clearCsv()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ createClientPoolArray(): ArrayList&lt;Clients&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initializeArrayList()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeClientFromPool()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveArrayToCsv()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1704630682 { 
+   	label=GamePlay
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   GamePlay1704630682[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GamePlay</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   B_B: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   GREEN_BOLD: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   REDB: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   RESET: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   YELB: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   a: Agency [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   b: Bank [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   c: Clients [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   cp: ClientPool [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ aging()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ clientSalary()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ nextTurn()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ skillUpgrade()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1769726488 { 
+   	label=Clients
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Clients1769726488[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Clients</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   age: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   fileIo: FileIO [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   firstName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   lastName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   position: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   potential: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   skill: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   transferValue: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ newClient(type: int, id: int): Clients</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1959135269 { 
+   	label=Agency
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Agency1959135269[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Agency</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   agency: ArrayList&lt;Clients&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   bureauLevel: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addClientToAgency(c: Clients)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeClientFromAgency(c: Clients)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ upgradeAgency()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2062940 { 
+   	label=Bank
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Bank2062940[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Bank</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   balance: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tax: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addMoney(amountToAdd: int): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ displayBalance()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ taxes()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2104327106 { 
+   	label=FileIO
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   FileIO2104327106[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FileIO</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ initiateClubs(): ArrayList&lt;String&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Agency1959135269 -> Clients1769726488[label="agency
+[0..*]"];
+ClientPool1199178073 -> Clients1769726488[label="client
+[0..1]"];
+Clients1769726488 -> FileIO2104327106[label="fileIo
+[0..1]"];
+GamePlay1704630682 -> Agency1959135269[label="a
+[0..1]"];
+GamePlay1704630682 -> Bank2062940[label="b
+[0..1]"];
+GamePlay1704630682 -> ClientPool1199178073[label="cp
+[0..1]"];
+GamePlay1704630682 -> Clients1769726488[label="c
+[0..1]"];
+    
+}
+@enduml
