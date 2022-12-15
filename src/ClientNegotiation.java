@@ -6,42 +6,64 @@ public class ClientNegotiation implements Negotiation {
     private int negCount = 0;
     private final Bank bank = new Bank();
     private final TextUI textUI = new TextUI();
-    private final Clients client = new Clients("","","",0,0,0,0, 0);
+    private Clients client = new Clients("","","",0,0,0,0, 0);
     private final Agency agency = new Agency("");
     private final ClientPool cp = new ClientPool();
 
-    public void runNegotiation() {
-        resistancePointSetter();
+    public void runNegotiation(Clients c) {
+        this.client = c;
+        resistancePointSetter(c);
+        if (negCount == 0){
         //give initial offer
         agentOffer = textUI.getUserInputNum("Make initial offer for client");
+            if(agentOffer >= clientResistancePoint) {
+                System.out.println("I am in!");
+                acceptOffer();
+            }
         // check if we're within clients range
         if(agentOffer < clientResistancePoint) {
-            System.out.println("Are you kidding me?");
             //offer is declined
             ++negCount;
-            improvedOffer();
+        }}
+        if(negCount == 1){
+            System.out.println("Are you kidding me?");
+            agentOffer = textUI.getUserInputNum("You can do better than that");
+            if(agentOffer >= clientResistancePoint) {
+                System.out.println("I am in!");
+                acceptOffer();
+            }
+            else{
+                ++negCount;
+                System.out.println("Hmm.. Nah!");
+            }
         }
-        if(agentOffer >= clientResistancePoint) {
-            System.out.println("I am in!");
-            acceptOffer();
+        if (negCount == 2){
+            System.out.println("Come on man");
+            agentOffer = textUI.getUserInputNum("Last try you...");
+            if(agentOffer >= clientResistancePoint) {
+                System.out.println("I am in!");
+                acceptOffer();
+
         }
-        if(negCount > 3) {
-            System.out.println(client.getFirstName()+" "+client.getLastName()+" has left the negotiation without a deal");
-            declineOffer();
-        }
+            else {
+                System.out.println(client.getFirstName()+" "+client.getLastName()+" has left the negotiation without a deal");
+                declineOffer();
+            }
         // leave negotiation and return to player list
+    }
     }
      public void improvedOffer() {
          //improve offer on decline
          agentOffer = textUI.getUserInputNum("You can do better than that");
          ++negCount;
      }
-     public int resistancePointSetter() {
+     public int resistancePointSetter(Clients c) {
 
          // resistancePoint is set to skill * 1 mil / 10 which is 10% of their transfervalue
          clientResistancePoint = client.getTransferValue() / 10;
         //returns the resistancePoint for the client by
          //if the ability is above a certain
+         System.out.println(clientResistancePoint);
         return clientResistancePoint;
      }
 

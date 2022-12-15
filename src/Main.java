@@ -8,6 +8,7 @@ public class Main {
 
         cp.initializeArrayList();
         cp.displayClientList();
+        gp.chooseClient();
 
 
     }

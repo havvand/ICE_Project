@@ -196,20 +196,13 @@ public class ClientPool
     }
     public void removeClientFromPool()
     {
-        System.out.println("SISISIZE " + clientPool.size());
-        System.out.println(clientPool.get(0).firstName + " " + clientPool.get(0).id);
         int input = clientPool.get(0).id;
-        System.out.println(input);
         //removes prospective client from clientPool as they're no longer available
         for(int i = 0; i < clientPool.size(); ++i)
         {
-            System.out.println("BEFORE WWW " + clientPool.get(i).id);
             if(input == clientPool.get(i).id)
             {
-                System.out.println(clientPool.get(0).id);
-                System.out.println("INTPUT " + input);
                 clientPool.remove(clientPool.get(i));
-                System.out.println(clientPool.get(0).id);
                 break;
             }
         }
