@@ -1,12 +1,10 @@
-public class Main
-{
+public class Main {
     public static void main(String[] args) {
-        ClientPool pool = new ClientPool();
-        GameSetup setup = new GameSetup();
 
-        pool.initializeArrayList();
-        pool.removeClientFromPool();
+     GameSetup gs = new GameSetup();
+     gs.mainMenu();
 
 
     }
 }
+

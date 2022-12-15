@@ -2,75 +2,74 @@ import java.util.Scanner;
 
 public class ClientNegotiation implements Negotiation {
     private int agentOffer;
-    private int agentTargetPoint;
-    private int agentResistancePoint;
-    private int clientTargetPoint;
     private int clientResistancePoint;
     private int negCount = 0;
     private final Bank bank = new Bank();
     private final TextUI textUI = new TextUI();
-
-    private final Scanner scanner = new Scanner(System.in);
-    private final Clients client = new Clients("","","",0,0,0,0, 0);
-    private final Agency agency = new Agency();
+    private Clients client = new Clients("","","",0,0,0,0, 0);
+    private final Agency agency = new Agency("");
     private final ClientPool cp = new ClientPool();
 
-    public void runNegotiation() {
-        resistancePointSetter();
+    public void runNegotiation(Clients c) {
+        resistancePointSetter(c);
+        if (negCount == 0){
         //give initial offer
         agentOffer = textUI.getUserInputNum("Make initial offer for client");
+            if(agentOffer >= clientResistancePoint) {
+                System.out.println("I am in!");
+                acceptOffer(c);
+            }
         // check if we're within clients range
         if(agentOffer < clientResistancePoint) {
-            System.out.println("Are you kidding me?");
             //offer is declined
             ++negCount;
-            improvedOffer();
+        }}
+        if(negCount == 1){
+            System.out.println("Are you kidding me?");
+            agentOffer = textUI.getUserInputNum("You can do better than that");
+            if(agentOffer >= clientResistancePoint) {
+                System.out.println("I am in!");
+                acceptOffer(c);
+            }
+            else{
+                ++negCount;
+                System.out.println("Hmm.. Nah!");
+            }
         }
-        if(agentOffer >= clientResistancePoint) {
-            System.out.println("Wow! I am in!");
-            acceptOffer();
-        }
-        //accept or decline until max iteration
-        if(negCount > 3) {
-            System.out.println(client.getFirstName()+" "+client.getLastName()+" has left the negotiation without a deal");
-            declineOffer();
-        }
-        //accept or decline
-        /* run acceptOffer() or declineOffer() and then iterate over offer*/
+        if (negCount == 2){
+            System.out.println("Come on man");
+            agentOffer = textUI.getUserInputNum("Last try you...");
+            if(agentOffer >= clientResistancePoint) {
+                System.out.println("I am in!");
+                acceptOffer(c);
 
-        /* input = new offer */
-
-        /* leave negotiation and return to player list */
+        }
+            else {
+                System.out.println(client.getFirstName()+" "+client.getLastName()+" has left the negotiation without a deal");
+                declineOffer();
+            }
+        // leave negotiation and return to player list
+    }
     }
      public void improvedOffer() {
          //improve offer on decline
          agentOffer = textUI.getUserInputNum("You can do better than that");
          ++negCount;
      }
-     public int resistancePointSetter() {
-
+     public int resistancePointSetter(Clients c) {
+        this.client = c;
          // resistancePoint is set to skill * 1 mil / 10 which is 10% of their transfervalue
          clientResistancePoint = client.getTransferValue() / 10;
         //returns the resistancePoint for the client by
          //if the ability is above a certain
+         System.out.println(clientResistancePoint);
         return clientResistancePoint;
      }
-     /* public int targetPointSetter() {
-        //returns the targetPoint for the client by
-        return clientTargetPoint;
-     }
-
-     public void negotiationType() {
-        //based on certain attribute from player a difficulty is set for the negotiations
-        // three different forms of negotiations are present:
-        // 1. The tough type (not willing to budge on what they want)
-        // 2. Compromise (more amicable towards finding something that serves both parties)
-        // 3. The weak type (typically accepts within initial or second offer
-    }*/
 
     @Override
-    public void acceptOffer() {
-        agency.addClientToAgency(client);
+    public void acceptOffer(Clients c) {
+        this.client = c;
+        agency.addClientToAgency(c);
         bank.withdrawMoney(agentOffer);
         cp.removeClientFromPool();
         //return to clientPool;
