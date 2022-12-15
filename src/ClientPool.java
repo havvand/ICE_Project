@@ -5,6 +5,7 @@ public class ClientPool
 {
     static ArrayList<Clients> clientPool = new ArrayList<>();
     Clients client = new Clients("", "", "", 1,0, 0, 0, 0);
+    int goalKeeper, defender, midfield, forward;
 
     public ClientPool()
     {
@@ -117,48 +118,49 @@ public class ClientPool
         return clientPoolList;
     }
 
+    private void countPlayerType()
+    {
+        goalKeeper = 0;
+        defender = 0;
+        midfield = 0;
+        forward = 0;
+
+        for (Clients c : clientPool)
+        {
+            if (c.position.equals("Goalkeeper")) {
+                goalKeeper++;
+            }
+            if (c.position.equals("Defender")) {
+                defender++;
+            }
+            if (c.position.equals("Midfield")) {
+                midfield++;
+            }
+            if (c.position.equals("Forward")) {
+                forward++;
+            }
+
+        }
+
+        System.out.println("Active goalkeepers: \n" + goalKeeper +
+                "\nActive defenders: \n" + defender +
+                "\nActive midfielders: \n" + midfield +
+                "\nActive forwards: \n" + forward);
+
+        System.out.println("POOL SIZE BEFORE ADD " + clientPool.size());
+
+    }
+
     // So far the method is only checking how many of each type player there are in the pool!
     public void addClientsPerTurn()
     {
-        int goalKeeper = 0;
-        int defender = 0;
-        int midfield = 0;
-        int forward = 0;
-
-            for (Clients c : clientPool)
-            {
-                if (c.position.equals("Goalkeeper")) {
-                    goalKeeper++;
-                }
-                if (c.position.equals("Defender")) {
-                    defender++;
-                }
-                if (c.position.equals("Midfield")) {
-                    midfield++;
-                }
-                if (c.position.equals("Forward")) {
-                    forward++;
-                }
-
-            }
-
-            System.out.println("Active goalkeepers: \n" + goalKeeper +
-                    "\nActive defenders: \n" + defender +
-                    "\nActive midfielders: \n" + midfield +
-                    "\nActive forwards: \n" + forward);
-
-           System.out.println("POOL SIZE BEFORE ADD " + clientPool.size());
+        countPlayerType();
 
         if(goalKeeper < 50)
         {
             for(int i = clientPool.size(); i < 550; i++)
             {
-                System.out.println("INSIDE ADD LOOP");
-                System.out.println("ADDED " + clientPool.add(client.newClient(1, i)));
-                System.out.println("INSIDE GOALLOOP " + clientPool.get(548).firstName);
-
-                System.out.println("POOL SIZE AFTER GOAL ADD " + clientPool.size());
-                System.out.println("GOAL KEEPR AFTER ADD " + goalKeeper);
+               clientPool.add(client.newClient(1, i));
             }
 
         }
@@ -166,22 +168,51 @@ public class ClientPool
         {
             for(int i = clientPool.size(); i < 550; i++)
             {
-                System.out.println("INSIDE ADD LOOP");
-                System.out.println("ADDED DEF " + clientPool.add(client.newClient(2, i)));
-                System.out.println("INSIDE DEFENDER LOOP " + clientPool.get(549).firstName);
-
+                clientPool.add(client.newClient(2, i));
                 System.out.println(clientPool.size());
             }
-
+        if(midfield < 200)
+        {
+            for(int i = clientPool.size(); i < 550; i++)
+            {
+                clientPool.add(client.newClient(3, i));
+                System.out.println(clientPool.size());
         }
+
+        if(forward < 100)
+        {
+            for(int i = clientPool.size(); i < 550; i++)
+            {
+                clientPool.add(client.newClient(3, i));
+                System.out.println(clientPool.size());
+            }
+        }
+
        for(Clients c : clientPool)
        {
            System.out.println(c.position + " " + c.id + " " + c.firstName);
        }
 
+       countPlayerType();
     }
 
-    public static void clearCsv() {
+    public void removeClientFromPool()
+    {
+        int input = clientPool.get(177).id; // REPLACE WITH USER INPUT
+        //removes prospective client from clientPool as they're no longer available
+        for(int i = 0; i < clientPool.size(); ++i)
+        {
+            if(input == clientPool.get(i).id)
+            {
+                clientPool.remove(clientPool.get(i));
+                break;
+            }
+        }
+
+    }
+
+    public static void clearCsv()
+    {
         try
         {
         FileWriter writer = new FileWriter("data/clientpool.csv", false);
@@ -194,27 +225,6 @@ public class ClientPool
 
         }
     }
-    public void removeClientFromPool()
-    {
-        System.out.println("SISISIZE " + clientPool.size());
-        System.out.println(clientPool.get(0).firstName + " " + clientPool.get(0).id);
-        int input = clientPool.get(0).id;
-        System.out.println(input);
-        //removes prospective client from clientPool as they're no longer available
-        for(int i = 0; i < clientPool.size(); ++i)
-        {
-            System.out.println("BEFORE WWW " + clientPool.get(i).id);
-            if(input == clientPool.get(i).id)
-            {
-                System.out.println(clientPool.get(0).id);
-                System.out.println("INTPUT " + input);
-                clientPool.remove(clientPool.get(i));
-                System.out.println(clientPool.get(0).id);
-                break;
-            }
-        }
 
 
-
-    }
 }

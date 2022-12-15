@@ -21,7 +21,7 @@ public class Clients
 
     public Clients newClient(int type, int id)
     {
-        id += (int)(Math.random()*(9300 - 1000 + 1) + 1000);;
+        id = (int)(Math.random()*(9300 - 1000 + 1) + 1000);
         potential = (int)(Math.random()*(100 - 25 + 1) + 25);
         age = (int)(Math.random()*(28 - 16 + 1) + 16);
         skill = (int)(Math.random()*(potential - 25 + 1) + 25);
